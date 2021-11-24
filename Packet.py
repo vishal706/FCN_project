@@ -1,4 +1,4 @@
 class Packet():
-    def __init__(self, index, payload):
+    def __init__(self, sequenceNo, payload):
+        self.sequenceNo = sequenceNo
         self.payload = payload
-        self.index = index
