@@ -26,26 +26,35 @@ class RUDP():
         self.f = open(filelocation, 'rb')
         data = self.f.read(self.segmentSize)
         self.packetIndex += 1
-        self.sequenceMapping[self.packetIndex] = Packet(self.packetIndex, data)
-        pickleData = pickle.dumps(self.sequenceMapping[self.packetIndex])
+        # self.sequenceMapping[self.packetIndex] = Packet(self.packetIndex, data)
+        # pickleData = pickle.dumps(self.sequenceMapping[self.packetIndex])
+        self.sequenceMapping[self.packetIndex] = pickle.dumps(Packet(self.packetIndex, data))
         while True:
-            self.s.sendto(pickleData, (self.dstIP, self.dstPort) )
-            while( not self.waitACK(self.packetIndex-1)):
-                self.s.sendto(pickleData, (self.dstIP, self.dstPort) )
+            self.s.sendto(self.sequenceMapping[self.packetIndex], (self.dstIP, self.dstPort) )
+            while( not self.waitACK(self.packetIndex)):
+                self.s.sendto(self.sequenceMapping[self.packetIndex], (self.dstIP, self.dstPort) )
             data = self.f.read(self.segmentSize)
             if not data:
                 self.f.close()
                 self.deleteConnection()
                 break
+            del self.sequenceMapping[self.packetIndex]
             self.packetIndex += 1
-            self.sequenceMapping[self.packetIndex] = Packet(self.packetIndex, data)
-            pickleData = pickle.dumps(self.sequenceMapping[self.packetIndex])
+            # self.sequenceMapping[self.packetIndex] = Packet(self.packetIndex, data)
+            # pickleData = pickle.dumps(self.sequenceMapping[self.packetIndex])
+            self.sequenceMapping[self.packetIndex] = pickle.dumps(Packet(self.packetIndex, data))
 
     def waitACK(self, sequenceNo):
         try:
             data, addr = self.s.recvfrom(100)
             print(str(sequenceNo) + ":" + data)
-            return True
+            resp = data.split(":")
+            if(resp[0]=="ACK") and int(resp[1]) == sequenceNo:
+                return True
+            if(resp[0]=="NACK"):
+                sequenceNoNack = resp[1]
+                while( not self.waitACK(sequenceNoNack)):
+                    self.s.sendto(self.sequenceMapping[sequenceNoNack], (self.dstIP, self.dstPort) )
         except Exception as e:
             print(e)
             return False
