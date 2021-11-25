@@ -23,10 +23,11 @@ f = open(selfip + '_recv.txt', 'wb+')
 while True:
     data, addr = s.recvfrom(options.segmentSize + 100)
     packet = pickle.loads(data)
-    s.sendto("ACK:" + str(packet.sequenceNo), (addr[0], addr[1]) )
+    ack = "ACK:" + str(packet.sequenceNo)
+    s.sendto(ack.encode(), (addr[0], addr[1]) )
     buffer[packet.sequenceNo] = packet.payload
     while nextSequenceNo in buffer:
-        f.write("%s" % buffer[nextSequenceNo])
+        f.write(b"%s" % buffer[nextSequenceNo])
         del buffer[nextSequenceNo]
         nextSequenceNo += 1
     f.flush()

@@ -47,6 +47,7 @@ class RUDP():
     def waitACK(self, sequenceNo):
         try:
             data, addr = self.s.recvfrom(100)
+            data = data.decode()
             print(str(sequenceNo) + ":" + data)
             resp = data.split(":")
             if(resp[0]=="ACK") and int(resp[1]) == sequenceNo:
