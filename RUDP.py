@@ -26,8 +26,6 @@ class RUDP():
         self.f = open(filelocation, 'rb')
         data = self.f.read(self.segmentSize)
         self.packetIndex += 1
-        # self.sequenceMapping[self.packetIndex] = Packet(self.packetIndex, data)
-        # pickleData = pickle.dumps(self.sequenceMapping[self.packetIndex])
         self.sequenceMapping[self.packetIndex] = pickle.dumps(Packet(self.packetIndex, data))
         while True:
             self.s.sendto(self.sequenceMapping[self.packetIndex], (self.dstIP, self.dstPort) )
@@ -40,13 +38,12 @@ class RUDP():
                 break
             del self.sequenceMapping[self.packetIndex]
             self.packetIndex += 1
-            # self.sequenceMapping[self.packetIndex] = Packet(self.packetIndex, data)
-            # pickleData = pickle.dumps(self.sequenceMapping[self.packetIndex])
             self.sequenceMapping[self.packetIndex] = pickle.dumps(Packet(self.packetIndex, data))
 
     def waitACK(self, sequenceNo):
         try:
             data, addr = self.s.recvfrom(100)
+            data = data.decode()
             print(str(sequenceNo) + ":" + data)
             resp = data.split(":")
             if(resp[0]=="ACK") and int(resp[1]) == sequenceNo:
