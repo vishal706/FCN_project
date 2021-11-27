@@ -22,7 +22,7 @@ class RUDP_GoBackN():
 
     def createConnection(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.s.settimeout(2.0) #setting timeout fro recv n socket
+        self.s.settimeout(1.0) #setting timeout fro recv n socket
         # intialMessage = "Hi"
         # self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
         # while not self.waitACK(-1):
@@ -30,7 +30,7 @@ class RUDP_GoBackN():
         # print("Connection Established from client")
                 
     def sendData(self, filelocation):
-        print("hello")
+        # print("hello")
         self.f = open(filelocation, 'rb')
         data = self.f.read(self.segmentSize)
         while data:
@@ -55,10 +55,12 @@ class RUDP_GoBackN():
         if next >= self.packetIndex:#end
             return
         elif next == -1:
-            self.sequenceNo = self.sequenceNo + w
+            print("Different response received")
+            return
+            # self.sequenceNo = self.sequenceNo + w
         elif next != -2:
             self.sequenceNo = next
-
+        print(self.sequenceNo)
         self.sendWindow()
     
     def sendPacket(self, next):
@@ -83,7 +85,7 @@ class RUDP_GoBackN():
             data, addr = self.s.recvfrom(100)
             data = data.decode()
             resp = data.split(":")
-            # print("waitNACK-" + str(resp))
+            print("waitNACK-" + str(resp))
             resp[1]=int(resp[1])
             if(resp[0]=="ECN"):
                 self.cw = (self.cw)
@@ -91,7 +93,7 @@ class RUDP_GoBackN():
             else:
                 return -1
         except Exception as e:
-            print(e)
+            # print(e)
             return -2
 
     def deleteConnection(self):

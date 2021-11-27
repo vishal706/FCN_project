@@ -4,7 +4,7 @@ from RUDP_GoBackN import RUDP_GoBackN
 
 parser = optparse.OptionParser()
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
-parser.add_option('-s', dest='segmentSize', default=700)
+parser.add_option('-s', dest='segmentSize', default=100)
 parser.add_option('-p', dest='dstPort', type='int', default=12345)
 
 parser.add_option('-m', dest='msg')
