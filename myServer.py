@@ -49,8 +49,10 @@ def ReceiveData(s):
             if packet.sequenceNo >  nextSequenceNo:
                 if packet.sequenceNo not in buffer:
                     buffer[packet.sequenceNo] = packet.payload
-                # if len(buffer)>= options.bufferSize:
-                sendresp(s, nextSequenceNo, "ECN:", addr[0], addr[1])
+                if len(buffer)>= options.bufferSize:
+                    sendresp(s, nextSequenceNo, "ECN:", addr[0], addr[1])
+                else:
+                    sendresp(s, nextSequenceNo, "NACK:", addr[0], addr[1])
             elif packet.sequenceNo ==  nextSequenceNo:
                 if packet.sequenceNo not in buffer:
                     buffer[packet.sequenceNo] = packet.payload
@@ -62,9 +64,9 @@ def ReceiveData(s):
                 # f.write(b"%s" % packet.payload)
                 # del buffer[nextSequenceNo]
                 f.flush()
-            sendresp(s, nextSequenceNo, "ECN:", addr[0], addr[1])
+            sendresp(s, nextSequenceNo, "NACK:", addr[0], addr[1])
         except Exception as e:
-            sendresp(s, nextSequenceNo, "ECN:", addr[0], addr[1])
+            sendresp(s, nextSequenceNo, "NACK:", addr[0], addr[1])
             print(e)
 
 
