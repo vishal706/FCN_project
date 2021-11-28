@@ -18,7 +18,7 @@ class RUDP_GoBackN():
         self.sequenceMapping = {}
         self.packetIndex = -1
         self.sequenceNo = 0
-        self.cw = 5
+        self.cw = 2
 
     def createConnection(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -60,7 +60,7 @@ class RUDP_GoBackN():
             # self.sequenceNo = self.sequenceNo + w
         elif next != -2:
             self.sequenceNo = next
-        print(self.sequenceNo)
+        print(str(self.sequenceNo) + ":"  + str(self.cw))
         self.sendWindow()
     
     def sendPacket(self, next):
@@ -88,10 +88,12 @@ class RUDP_GoBackN():
             print("waitNACK-" + str(resp))
             resp[1]=int(resp[1])
             if(resp[0]=="ECN"):
-                self.cw = (self.cw)
-                return resp[1]
+                #Decrease window since congestion detected
+                self.cw = max(1, (self.cw)/2)
             else:
-                return -1
+                #Increase window since no congestion detected
+                self.cw = min(16, ((self.cw)*2))
+            return resp[1]
         except Exception as e:
             # print(e)
             return -2
