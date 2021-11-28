@@ -42,26 +42,27 @@ class RUDP_GoBackN():
         
         
     def sendWindow(self):
-        w=self.cw
-        i=0
-        while i<w:
-            self.s.sendto(self.sequenceMapping[self.sequenceNo + i], (self.dstIP, self.dstPort) )
-            # time.sleep(0.5)
-            i+=1
-            if (self.sequenceNo + i) > self.packetIndex:
-                break
-        next = self.waitNACK()
+        while True:
+            w=self.cw
+            i=0
+            while i<w:
+                self.s.sendto(self.sequenceMapping[self.sequenceNo + i], (self.dstIP, self.dstPort) )
+                # time.sleep(0.5)
+                i+=1
+                if (self.sequenceNo + i) > self.packetIndex:
+                    break
+            next = self.waitNACK()
 
-        if next >= self.packetIndex:#end
-            return
-        elif next == -1:
-            print("Different response received")
-            return
-            # self.sequenceNo = self.sequenceNo + w
-        elif next != -2:
-            self.sequenceNo = next
-        print(str(self.sequenceNo) + ":"  + str(self.cw))
-        self.sendWindow()
+            if next >= self.packetIndex:#end
+                return
+            elif next == -1:
+                print("Different response received")
+                return
+                # self.sequenceNo = self.sequenceNo + w
+            elif next != -2:
+                self.sequenceNo = next
+            print(str(self.sequenceNo) + ":"  + str(self.cw))
+        # self.sendWindow()
     
     def sendPacket(self, next):
         self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort) )
@@ -85,14 +86,18 @@ class RUDP_GoBackN():
             data, addr = self.s.recvfrom(100)
             data = data.decode()
             resp = data.split(":")
-            print("waitNACK-" + str(resp))
+            # print("waitNACK-" + str(resp))
             resp[1]=int(resp[1])
             if(resp[0]=="ECN"):
                 #Decrease window since congestion detected
-                self.cw = max(1, (self.cw)/2)
+                k=resp[1]-1
+                while k in self.sequenceMapping:
+                    del self.sequenceMapping[k]
+                    k-=1
+                self.cw = max(2, (self.cw)/2)
             else:
                 #Increase window since no congestion detected
-                self.cw = min(16, ((self.cw)*2))
+                self.cw = min(2048, ((self.cw)*2))
             return resp[1]
         except Exception as e:
             # print(e)

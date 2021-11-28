@@ -7,7 +7,7 @@ import time
 parser = optparse.OptionParser()
 selfip = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
 parser.add_option('-p', dest='port', type='int', default=12345)
-parser.add_option('-s', dest='segmentSize', type='int', default=100)
+parser.add_option('-s', dest='segmentSize', type='int', default=1000)
 parser.add_option('-w', dest='bufferSize', type='int', default=5)
 (options, args) = parser.parse_args()
 
@@ -15,18 +15,18 @@ SenderIP = "0.0.0.0"
 SenderPort = "12345"
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind( (selfip, options.port) )
-f = open(selfip + '_recv.txt', 'wb+')
+f = open(selfip + '_recv.mp4', 'wb+')
 
 
 def sendresp(s, nextSequenceNo, respType, addr_0, addr_1):
     resp = respType + str(nextSequenceNo)
-    print(resp)
+    # print(resp)
     s.sendto(resp.encode(), (addr_0, addr_1) )
 
 def waitHandshake(s):
     global SenderIP
     global SenderPort
-    data, addr = s.recvfrom(options.segmentSize + 100)
+    data, addr = s.recvfrom(options.segmentSize + 500)
     print(data)
     SenderIP = addr[0]
     SenderPort = addr[1]
@@ -44,7 +44,7 @@ def ReceiveData(s):
             data, addr = s.recvfrom(options.segmentSize + 100)
             # print("Received packet:" + data.decode())
             packet = pickle.loads(data)
-            print("buffersize:" + str(len(buffer)) + "-Received:" + str(packet.sequenceNo))
+            # print("buffersize:" + str(len(buffer)) + "-Received:" + str(packet.sequenceNo))
             
             if packet.sequenceNo >  nextSequenceNo:
                 if packet.sequenceNo not in buffer:
