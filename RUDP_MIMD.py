@@ -6,13 +6,14 @@ import codecs
 import pickle
 import time
 
-class RUDP_GoBackN():
-
+class RUDP_MIMD():
+    '''Multiplicative Increase and Multiplicative decrease'''
     def __init__(self, srcIP, dstIP, srcPort, dstPort, segmentSize):
         self.srcIP = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
         self.dstIP = dstIP
         self.srcPort = srcPort
         self.dstPort = dstPort
+        self.maxWindowSize = 65535
         self.segmentSize = int(segmentSize)
         self.createConnection()
         self.sequenceMapping = {}
@@ -61,7 +62,7 @@ class RUDP_GoBackN():
                 # self.sequenceNo = self.sequenceNo + w
             elif next != -2:
                 self.sequenceNo = next
-            print(str(self.sequenceNo) + ":"  + str(self.cw))
+            # print(str(self.sequenceNo) + ":"  + str(self.cw))
         # self.sendWindow()
     
     def sendPacket(self, next):
@@ -94,10 +95,10 @@ class RUDP_GoBackN():
                 while k in self.sequenceMapping:
                     del self.sequenceMapping[k]
                     k-=1
-                self.cw = max(2, (self.cw)/2)
+                self.cw = max(2, int((self.cw)/2))
             else:
                 #Increase window since no congestion detected
-                self.cw = min(2048, ((self.cw)*2))
+                self.cw = min(self.maxWindowSize, int(((self.cw)*2)))
             return resp[1]
         except Exception as e:
             # print(e)

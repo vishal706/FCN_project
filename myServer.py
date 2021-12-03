@@ -59,7 +59,7 @@ def ReceiveData(s):
                 if packet.sequenceNo not in buffer:
                     buffer[packet.sequenceNo] = packet.payload
                 while nextSequenceNo in buffer:
-                    print("writing " + str(nextSequenceNo))
+                    # print("writing " + str(nextSequenceNo))
                     f.write(b"%s" % buffer[nextSequenceNo])
                     del buffer[nextSequenceNo]
                     nextSequenceNo += 1
