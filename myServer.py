@@ -2,20 +2,22 @@ import socket, optparse
 import netifaces as ni
 from Packet import Packet 
 import pickle
-import time
+from timeit import default_timer as timer
 
 parser = optparse.OptionParser()
 selfip = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
 parser.add_option('-p', dest='port', type='int', default=12345)
 parser.add_option('-s', dest='segmentSize', type='int', default=1000)
 parser.add_option('-w', dest='bufferSize', type='int', default=5)
+parser.add_option('-f', dest='dstFile', default="README.md")
+
 (options, args) = parser.parse_args()
 
 SenderIP = "0.0.0.0"
 SenderPort = "12345"
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind( (selfip, options.port) )
-f = open(selfip + '_recv.mp4', 'wb+')
+f = open(selfip + options.dstFile, 'wb+')
 
 
 def sendresp(s, nextSequenceNo, respType, addr_0, addr_1):
@@ -71,4 +73,7 @@ def ReceiveData(s):
 
 
 # waitHandshake(s)
+start = timer()
 ReceiveData(s)
+end = timer()
+print("Sending complete in time:: " + str(end - start))
