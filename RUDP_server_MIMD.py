@@ -37,6 +37,8 @@ class RUDP_server_MIMD():
     def _on_timeout(self):
         print("timeout occured")
         self.sendresp("NACK3:", self.addr[0], self.addr[1])
+        self._start_timer()
+
 
     def _start_timer(self):
         # self.OutputLogger("[_start_timer] Starting timer for round {} max_time : self.get_round_timer() {} timestamp {}".format( roundNo,self.get_round_timer(),time.time()))
@@ -49,6 +51,7 @@ class RUDP_server_MIMD():
         #     self.OutputLogger(" Stopping timer for roundNo {} timestamp {} ".format( roundNo,time.time()))
         if self.timer is not None:
             self.timer.cancel()
+        self._start_timer()
         # self.OutputLogger("[_stop_timer] Exit for round {}".format(roundNo))
     
     def sendresp(self, respType, addr_0, addr_1):
@@ -57,7 +60,7 @@ class RUDP_server_MIMD():
         self.s.sendto(resp.encode(), (addr_0, addr_1) )
         
     def ReceiveData(self, filename):
-        f = open(self.selfip + filename, 'wb+')
+        f = open(filename, 'wb+')
         # self._start_timer()
         while True:
             try:
@@ -85,7 +88,7 @@ class RUDP_server_MIMD():
                         # f.write(b"%s" % packet.payload)
                         # del buffer[nextSequenceNo]
                         f.flush()
-                    self._start_timer()
+                    # self._start_timer()
                     # self.sendresp( "NACK2:", self.addr[0], self.addr[1])
             except Exception as e:
                 # self.sendresp( "NACK:3", self.addr[0], self.addr[1])

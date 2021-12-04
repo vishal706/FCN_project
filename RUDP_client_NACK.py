@@ -6,7 +6,7 @@ import codecs
 import pickle
 import time
 
-class RUDP_client_minimal():
+class RUDP_client_NACK():
 
     def __init__(self, srcIP, dstIP, srcPort, dstPort, segmentSize):
         self.srcIP = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
@@ -52,10 +52,10 @@ class RUDP_client_minimal():
             resp = data.split(":")
             if(resp[0]=="ACK") and int(resp[1]) == sequenceNo:
                 return True
-            # if(resp[0]=="NACK"):
-            #     sequenceNoNack = resp[1]
-            #     while( not self.waitACK(sequenceNoNack)):
-            #         self.s.sendto(self.sequenceMapping[sequenceNoNack], (self.dstIP, self.dstPort) )
+            if(resp[0]=="NACK"):
+                sequenceNoNack = resp[1]
+                while( not self.waitACK(sequenceNoNack)):
+                    self.s.sendto(self.sequenceMapping[sequenceNoNack], (self.dstIP, self.dstPort) )
         except Exception as e:
             print(e)
             return False
