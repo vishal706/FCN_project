@@ -6,7 +6,7 @@ import codecs
 import pickle
 import time
 
-class RUDP_MIMD():
+class RUDP_client_MIMD():
     '''Multiplicative Increase and Multiplicative decrease
     IF a packet is lost, teh sliding windows restarts from the lost packet'''
     def __init__(self, srcIP, dstIP, srcPort, dstPort, segmentSize):
