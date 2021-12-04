@@ -8,8 +8,8 @@ from RUDP_server_minimal import RUDP_server_minimal
 parser = optparse.OptionParser()
 
 parser.add_option('-p', dest='port', type='int', default=12345)
-parser.add_option('-s', dest='segmentSize', type='int', default=1000)
-parser.add_option('-w', dest='bufferSize', type='int', default=500)
+parser.add_option('-s', dest='segmentSize', type='int', default=100)
+parser.add_option('-w', dest='bufferSize', type='int', default=50000)
 parser.add_option('-f', dest='dstFile', default="README.md")
 
 (options, args) = parser.parse_args()

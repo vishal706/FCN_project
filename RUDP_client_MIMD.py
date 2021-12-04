@@ -15,7 +15,7 @@ class RUDP_client_MIMD():
         self.srcPort = srcPort
         self.dstPort = dstPort
         self.initialWindowSize = 1024
-        self.maxWindowSize = 65535
+        self.maxWindowSize = 50000
         self.segmentSize = int(segmentSize)
         self.createConnection()
         self.sequenceMapping = {}
@@ -101,7 +101,7 @@ class RUDP_client_MIMD():
                 self.cw = max(self.initialWindowSize, int((self.cw)/2))
             else:
                 #Increase window since no congestion detected
-                self.cw = min(self.maxWindowSize, int(((self.cw)*2)))
+                self.cw = min(self.maxWindowSize, int((self.cw)*2))
             return resp[1]
         except Exception as e:
             # print(e)

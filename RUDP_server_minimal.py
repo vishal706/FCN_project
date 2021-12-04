@@ -4,7 +4,6 @@ from Packet import Packet
 import pickle
 
 
-
 # def waitHandshake(s):
 #     global SenderIP
 #     global SenderPort
