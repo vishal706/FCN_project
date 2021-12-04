@@ -7,6 +7,7 @@ from RUDP_server_minimal import RUDP_server_minimal
 
 parser = optparse.OptionParser()
 
+#  python3 RUDPServer.py -f "recv.txt" -p 101 -i 10.0.0.2
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
 parser.add_option('-p', dest='port', type='int', default=12345)
 parser.add_option('-s', dest='segmentSize', type='int', default=100)
