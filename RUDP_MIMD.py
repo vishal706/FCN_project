@@ -7,19 +7,21 @@ import pickle
 import time
 
 class RUDP_MIMD():
-    '''Multiplicative Increase and Multiplicative decrease'''
+    '''Multiplicative Increase and Multiplicative decrease
+    IF a packet is lost, teh sliding windows restarts from the lost packet'''
     def __init__(self, srcIP, dstIP, srcPort, dstPort, segmentSize):
         self.srcIP = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
         self.dstIP = dstIP
         self.srcPort = srcPort
         self.dstPort = dstPort
+        self.initialWindowSize = 1024
         self.maxWindowSize = 65535
         self.segmentSize = int(segmentSize)
         self.createConnection()
         self.sequenceMapping = {}
         self.packetIndex = -1
         self.sequenceNo = 0
-        self.cw = 2
+        self.cw = self.initialWindowSize
 
     def createConnection(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -62,7 +64,8 @@ class RUDP_MIMD():
                 # self.sequenceNo = self.sequenceNo + w
             elif next != -2:
                 self.sequenceNo = next
-            # print(str(self.sequenceNo) + ":"  + str(self.cw))
+            print(str(self.sequenceNo) + ":"  + str(self.cw))
+            # break
         # self.sendWindow()
     
     def sendPacket(self, next):
@@ -87,7 +90,7 @@ class RUDP_MIMD():
             data, addr = self.s.recvfrom(100)
             data = data.decode()
             resp = data.split(":")
-            # print("waitNACK-" + str(resp))
+            print("waitNACK-" + str(resp))
             resp[1]=int(resp[1])
             if(resp[0]=="ECN"):
                 #Decrease window since congestion detected
@@ -95,7 +98,7 @@ class RUDP_MIMD():
                 while k in self.sequenceMapping:
                     del self.sequenceMapping[k]
                     k-=1
-                self.cw = max(2, int((self.cw)/2))
+                self.cw = max(self.initialWindowSize, int((self.cw)/2))
             else:
                 #Increase window since no congestion detected
                 self.cw = min(self.maxWindowSize, int(((self.cw)*2)))

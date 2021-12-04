@@ -8,7 +8,7 @@ parser = optparse.OptionParser()
 selfip = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
 parser.add_option('-p', dest='port', type='int', default=12345)
 parser.add_option('-s', dest='segmentSize', type='int', default=1000)
-parser.add_option('-w', dest='bufferSize', type='int', default=5)
+parser.add_option('-w', dest='bufferSize', type='int', default=50000)
 parser.add_option('-f', dest='dstFile', default="README.md")
 
 (options, args) = parser.parse_args()
@@ -16,6 +16,7 @@ parser.add_option('-f', dest='dstFile', default="README.md")
 SenderIP = "0.0.0.0"
 SenderPort = "12345"
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# s.settimeout(1.0)
 s.bind( (selfip, options.port) )
 f = open(selfip + options.dstFile, 'wb+')
 
@@ -54,21 +55,21 @@ def ReceiveData(s):
                 if len(buffer)>= options.bufferSize:
                     sendresp(s, nextSequenceNo, "ECN:", addr[0], addr[1])
                 else:
-                    sendresp(s, nextSequenceNo, "NACK:", addr[0], addr[1])
+                    sendresp(s, nextSequenceNo, "NACK1:", addr[0], addr[1])
             elif packet.sequenceNo ==  nextSequenceNo:
                 if packet.sequenceNo not in buffer:
                     buffer[packet.sequenceNo] = packet.payload
                 while nextSequenceNo in buffer:
-                    # print("writing " + str(nextSequenceNo))
+                    print("writing " + str(nextSequenceNo))
                     f.write(b"%s" % buffer[nextSequenceNo])
                     del buffer[nextSequenceNo]
                     nextSequenceNo += 1
                 # f.write(b"%s" % packet.payload)
                 # del buffer[nextSequenceNo]
                 f.flush()
-            sendresp(s, nextSequenceNo, "NACK:", addr[0], addr[1])
+            sendresp(s, nextSequenceNo, "NACK2:", addr[0], addr[1])
         except Exception as e:
-            sendresp(s, nextSequenceNo, "NACK:", addr[0], addr[1])
+            sendresp(s, nextSequenceNo, "NACK:3", addr[0], addr[1])
             print(e)
 
 
