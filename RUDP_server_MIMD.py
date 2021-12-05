@@ -17,8 +17,9 @@ import threading
 #     sendresp(s, -1, "ACK:", SenderIP, SenderPort)
 
 class RUDP_server_MIMD():
-    def __init__(self, port, segmentSize, bufferSize):
-        print("Initialising :: " + self.__class__.__name__)
+    def __init__(self, logger, port, segmentSize, bufferSize):
+        self.logger = logger
+        self.logger.info("Initialising :: " + self.__class__.__name__)
         self.buffer = {}
         self.nextSequenceNo = -1
         self.port = port
@@ -35,12 +36,12 @@ class RUDP_server_MIMD():
         self.selfip = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
         self.s.bind( (self.selfip, self.port) )
         data, self.addr = self.s.recvfrom(self.segmentSize + 100)
-        print("Received " + str(data) + "from server")
+        self.logger.info("Received " + str(data) + "from server")
         self.sendresp("ACK:", self.addr[0], self.addr[1])
         self.nextSequenceNo += 1
     
     def _on_timeout(self):
-        print("timeout occured")
+        self.logger.info("timeout occured")
         self.sendresp("NACK3:", self.addr[0], self.addr[1])
         self._start_timer()
 
@@ -61,7 +62,7 @@ class RUDP_server_MIMD():
     
     def sendresp(self, respType, addr_0, addr_1):
         resp = respType + str(self.nextSequenceNo)
-        # print(resp)
+        # self.logger.info(resp)
         self.s.sendto(resp.encode(), (addr_0, addr_1) )
         
     def ReceiveData(self, filename):
@@ -70,9 +71,9 @@ class RUDP_server_MIMD():
         while True:
             try:
                 data, self.addr = self.s.recvfrom(self.segmentSize + 100)
-                print("Received packet:")
+                self.logger.info("Received packet:")
                 packet = pickle.loads(data)
-                print("buffersize:" + str(len(self.buffer)) + "-Received:" + str(packet.sequenceNo))
+                self.logger.info("buffersize:" + str(len(self.buffer)) + "-Received:" + str(packet.sequenceNo))
                 
                 if packet.sequenceNo >  self.nextSequenceNo:
                     if packet.sequenceNo not in self.buffer:
@@ -86,7 +87,7 @@ class RUDP_server_MIMD():
                         self.buffer[packet.sequenceNo] = packet.payload
                     self._stop_timer()
                     while self.nextSequenceNo in self.buffer:
-                        print("writing " + str(self.nextSequenceNo))
+                        self.logger.info("writing " + str(self.nextSequenceNo))
                         f.write(b"%s" % self.buffer[self.nextSequenceNo])
                         del self.buffer[self.nextSequenceNo]
                         self.nextSequenceNo += 1
@@ -97,5 +98,5 @@ class RUDP_server_MIMD():
                     # self.sendresp( "NACK2:", self.addr[0], self.addr[1])
             except Exception as e:
                 # self.sendresp( "NACK:3", self.addr[0], self.addr[1])
-                print(e)
+                self.logger.info(e)
 

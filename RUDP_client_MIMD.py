@@ -9,8 +9,9 @@ import time
 class RUDP_client_MIMD():
     '''Multiplicative Increase and Multiplicative decrease
     IF a packet is lost, teh sliding windows restarts from the lost packet'''
-    def __init__(self, srcIP, dstIP, srcPort, dstPort, segmentSize, initialWindowSize, maxWindowSize):
-        print("Initialising :: " + self.__class__.__name__)
+    def __init__(self, logger, srcIP, dstIP, srcPort, dstPort, segmentSize, initialWindowSize, maxWindowSize):
+        self.logger = logger
+        self.logger.info("Initialising :: " + self.__class__.__name__)
         self.srcIP = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
         self.dstIP = dstIP
         self.srcPort = srcPort
@@ -37,18 +38,18 @@ class RUDP_client_MIMD():
         if self.waitACK(-1):
             time.sleep(2)
             # self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
-            print("Connection Established from server")
+            self.logger.info("Connection Established from server")
         return
                 
     def sendData(self, filelocation):
-        # print("hello")
+        # self.logger.info("hello")
         self.f = open(filelocation, 'rb')
         data = self.f.read(self.segmentSize)
         while data:
             self.packetIndex += 1
             self.sequenceMapping[self.packetIndex] = pickle.dumps(Packet(self.packetIndex, data))
             data = self.f.read(self.segmentSize)
-        print("Total segments :: " + str(self.packetIndex + 1))
+        self.logger.info("Total segments :: " + str(self.packetIndex + 1))
         self.sendWindow()
         
         
@@ -67,12 +68,12 @@ class RUDP_client_MIMD():
             if next >= self.packetIndex:#end
                 return
             elif next == -1:
-                print("Different response received")
+                self.logger.info("Different response received")
                 return
                 # self.sequenceNo = self.sequenceNo + w
             elif next != -2:
                 self.sequenceNo = next
-            print(str(self.sequenceNo) + ":"  + str(self.cw))
+            self.logger.info(str(self.sequenceNo) + ":"  + str(self.cw))
             # break
         # self.sendWindow()
     
@@ -86,14 +87,14 @@ class RUDP_client_MIMD():
             data, addr = self.s.recvfrom(100)
             data = data.decode()
             resp = data.split(":")
-            print(str(resp[1]) + ":" + data)
+            self.logger.info(str(resp[1]) + ":" + data)
             if(resp[0]=="ACK" and int(resp[1]) == sequenceNo):
                 return True
         except Exception as e:
             self.timeoutCounter += 1
             if self.timeoutCounter > self.maxTimeout:
                 self.timeoutCounter = 0
-                print(e)
+                self.logger.info(e)
             return False
 
     def waitNACK(self):
@@ -101,7 +102,7 @@ class RUDP_client_MIMD():
             data, addr = self.s.recvfrom(100)
             data = data.decode()
             resp = data.split(":")
-            print("waitNACK-" + str(resp))
+            self.logger.info("waitNACK-" + str(resp))
             resp[1]=int(resp[1])
             # self.timeoutCounter = 0
             if(resp[0]=="ECN"):
@@ -117,7 +118,7 @@ class RUDP_client_MIMD():
             return resp[1]
             
         except Exception as e:
-            # print(e)
+            # self.logger.info(e)
             return -2
 
     def deleteConnection(self):
