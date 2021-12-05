@@ -6,6 +6,9 @@ import os
 from RUDP_client_MIMD import RUDP_client_MIMD
 from RUDP_client_NACK import RUDP_client_NACK
 from RUDP_client_minimal import RUDP_client_minimal
+from RUDP_client_MIMD_RTT_calculation import RUDP_client_MIMD_RTT_calculation
+# from RUDP_client_MIMD import RUDP_client_MIMD
+# from RUDP_client_minimal import RUDP_client_minimal
 from RUDP_client3 import RUDP_client3
 from RUDP_client2 import RUDP_client2
 

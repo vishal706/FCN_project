@@ -4,11 +4,15 @@ from timeit import default_timer as timer
 import logging
 import os
 #Create and configure logger
+from RUDP_server_MIMD import RUDP_server_MIMD
+from RUDP_server_minimal import RUDP_server_minimal
+from RUDP_server_MIMD_RTT_calculation import RUDP_server_MIMD_RTT_calculation
 
 from RUDP_server_MIMD import RUDP_server_MIMD
 from RUDP_server_minimal import RUDP_server_minimal
 from RUDP_server3 import RUDP_server3
 from RUDP_server2 import RUDP_server2
+
 parser = optparse.OptionParser()
 
 #  python3 RUDPServer.py -i "10.0.0.2" -p 101 -f "recv.txt" 
