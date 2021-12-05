@@ -1,6 +1,9 @@
 import optparse
 from timeit import default_timer as timer
 
+import logging
+import os
+
 from RUDP_client_MIMD import RUDP_client_MIMD
 from RUDP_client_minimal import RUDP_client_minimal
 from RUDP_client_MIMD_RTT_calculation import RUDP_client_MIMD_RTT_calculation
@@ -20,6 +23,23 @@ parser.add_option('-m', dest='msg')
 
 (options, args) = parser.parse_args()
 
+log_location = "./log_files/client_" +  options.dstIP + "_" + str(options.dstPort)\
+     + "_" + str(options.initialWindowSize) + "_" + str(options.maxWindowSize) + "_" +".log"
+
+logger = logging.getLogger()
+fhandler = logging.FileHandler(filename=log_location, mode='w')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fhandler.setFormatter(formatter)
+logger.addHandler(fhandler)
+
+consoleHandler = logging.StreamHandler()
+consoleFormatter = logging.Formatter('%(message)s')
+consoleHandler.setFormatter(consoleFormatter)
+logger.addHandler(consoleHandler)
+
+
+logger.setLevel(logging.DEBUG)
+
 # timer_minimal = []
 timer_MIMD = []
 timer_2 = []
@@ -36,7 +56,7 @@ timer_3 = []
 #     timer_minimal.append(end - start)
 
 # for i in range(5):
-#     Rudp = RUDP_client_MIMD('127.0.0.1', options.dstIP, options.dstPort + 1, options.dstPort + 1, options.segmentSize,
+#     Rudp = RUDP_client_MIMD(logger, '127.0.0.1', options.dstIP, options.dstPort + 1, options.dstPort + 1, options.segmentSize,
 #                             options.initialWindowSize, options.maxWindowSize)
 #     start = timer()
 #     Rudp.createConnection()
@@ -47,8 +67,7 @@ timer_3 = []
 #     timer_MIMD.append(end - start)
 
 for i in range(10):
-    Rudp = RUDP_client2('127.0.0.1', options.dstIP, options.dstPort + 2, options.dstPort + 2, options.segmentSize,
-                        options.initialWindowSize, options.maxWindowSize)
+    Rudp = RUDP_client2(logger, '127.0.0.1', options.dstIP, options.dstPort + 2, options.dstPort + 2, options.segmentSize, options.initialWindowSize, options.maxWindowSize)
     start = timer()
     Rudp.createConnection()
     print("Connection established")
@@ -58,8 +77,7 @@ for i in range(10):
     timer_2.append(end - start)
 
 for i in range(10):
-    Rudp = RUDP_client3('127.0.0.1', options.dstIP, options.dstPort + 3, options.dstPort + 3, options.segmentSize,
-                        options.initialWindowSize, options.maxWindowSize)
+    Rudp = RUDP_client3(logger, '127.0.0.1', options.dstIP, options.dstPort + 3, options.dstPort + 3, options.segmentSize, options.initialWindowSize, options.maxWindowSize)
     start = timer()
     Rudp.createConnection()
     print("Connection established")

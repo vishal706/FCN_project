@@ -1,3 +1,5 @@
 .idea/
 __pycache__/
 received_files/
+log_files/client_10.0.0.2_105_1024_50000_.log
+log_files/server_10.0.0.2_105_1024_0.25_50000_.log
