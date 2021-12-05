@@ -37,7 +37,7 @@ class RUDP_server_minimal():
         self.s.sendto(resp.encode(), (addr_0, addr_1) )
     
     def ReceiveData(self, filename):
-        f = open(self.selfip + filename, 'wb+')
+        f = open(filename, 'wb+')
         while True:
             data, addr = self.s.recvfrom(self.segmentSize + 100)
             packet = pickle.loads(data)
