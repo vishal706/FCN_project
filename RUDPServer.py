@@ -4,6 +4,7 @@ from timeit import default_timer as timer
 
 from RUDP_server_MIMD import RUDP_server_MIMD
 from RUDP_server_minimal import RUDP_server_minimal
+from RUDP_server_MIMD_RTT_calculation import RUDP_server_MIMD_RTT_calculation
 
 parser = optparse.OptionParser()
 
@@ -18,8 +19,9 @@ parser.add_option('-f', dest='dstFile', default="README.md")
 (options, args) = parser.parse_args()
 
 
-Rudp = RUDP_server_MIMD(options.port, options.segmentSize, options.bufferSize)
+# Rudp = RUDP_server_MIMD(options.port, options.segmentSize, options.bufferSize)
 # Rudp = RUDP_server_minimal(options.port, options.segmentSize, options.bufferSize)
+Rudp = RUDP_server_MIMD_RTT_calculation(options.port, options.segmentSize, options.bufferSize)
 
 start = timer()
 Rudp.createConnection()

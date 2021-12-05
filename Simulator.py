@@ -1,24 +1,19 @@
-import RUDPServer
-import RUDPClient
-import os
 import subprocess
 
-segment_size = 0
-buffer_size = 100
-
-SERVER_CMD = f"python3 RUDPServer.py -f \"recv.txt\" -p 101 -i 10.0.0.2 -s {segment_size} -w {buffer_size}"
-CLIENT_CMD = f"python3 RUDPClient.py -i 10.0.0.2 -f \"send.txt\" -p 101 -s {segment_size}"
-
-def SimulatingDifferentWindowSizes():
-    for i in range(1000):
-        print(i)
+## result: Random behavior
+def simulating_different_segment_sizes():
+    for segment_size in range(100, 10000, 100):
+        cmd = f"python3 RUDPClient.py -i 10.0.0.2 -f \"1.5MB.mp4\" -p 101 -s {segment_size}"
+        print(f"{segment_size}:\n")
+        print(f"{cmd}\n")
+        returned_output = subprocess.check_output(cmd, shell=True)
+        print(returned_output)
+        print("------------------------------------------------------------------------------------")
     return None
 
-def SimulatingDifferentBufferSizes():
+
+def simulating_different_segment_sizes_multiple_hosts():
     return None
 
-def SimulatingDifferentBandwidth():
-    return None
 
-print("hello, world!")
-SimulatingDifferentWindowSizes()
+simulating_different_segment_sizes()
