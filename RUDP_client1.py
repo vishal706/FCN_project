@@ -7,8 +7,9 @@ import pickle
 import time
 
 class RUDP_client_MIMD():
-    '''Multiplicative Increase and Multiplicative decrease
-    IF a packet is lost, teh sliding windows restarts from the lost packet'''
+    '''Multiplicative Increase and Multiplicative decrease factor of 2.
+    basically on NACK window increases but on ECN window decreases
+    IF a packet is lost, the sliding windows restarts from the lost packet'''
     def __init__(self, logger, srcIP, dstIP, srcPort, dstPort, segmentSize, initialWindowSize, maxWindowSize):
         self.logger = logger
         self.logger.info("Initialising :: " + self.__class__.__name__)

@@ -8,7 +8,10 @@ import time
 
 class RUDP_client2():
     '''Multiplicative Increase and Multiplicative decrease
-    IF a packet is lost, teh sliding windows restarts from the lost packet'''
+    IF a packet is lost, teh sliding windows restarts from the lost packet
+    
+    On Receiving a NACK, the server only focus to send the lost packet and moves the sliding 
+    window based on the respons from client'''
     def __init__(self, logger, srcIP, dstIP, srcPort, dstPort, segmentSize, initialWindowSize, maxWindowSize):
         self.logger = logger
         self.logger.info("Initialising :: " + self.__class__.__name__)

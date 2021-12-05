@@ -17,6 +17,7 @@ import threading
 #     sendresp(s, -1, "ACK:", SenderIP, SenderPort)
 
 class RUDP_server3():
+    '''Server/ Receiver sends the NACK feedback reglarly a interval of feedbackTime'''
     def __init__(self, logger, port, segmentSize, bufferSize, feedbackTime):
         self.logger = logger
         logger.info("Initialising :: " + self.__class__.__name__)
