@@ -19,7 +19,7 @@ import threading
 class RUDP_server_MIMD():
     def __init__(self, logger, port, segmentSize, bufferSize):
         self.logger = logger
-        self.logger.info("Initialising :: " + self.__class__.__name__)
+        logger.info("Initialising :: " + self.__class__.__name__)
         self.buffer = {}
         self.nextSequenceNo = -1
         self.port = port

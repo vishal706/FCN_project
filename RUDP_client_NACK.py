@@ -8,8 +8,9 @@ import time
 
 class RUDP_client_NACK():
 
-    def __init__(self, srcIP, dstIP, srcPort, dstPort, segmentSize):
-        print("Initialising :: " + self.__class__.__name__)
+    def __init__(self, logger, srcIP, dstIP, srcPort, dstPort, segmentSize):
+        self.logger = logger
+        logger.info("Initialising :: " + self.__class__.__name__)
         self.srcIP = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
         self.dstIP = dstIP
         self.srcPort = srcPort
@@ -49,7 +50,7 @@ class RUDP_client_NACK():
         try:
             data, addr = self.s.recvfrom(100)
             data = data.decode()
-            print(str(sequenceNo) + ":" + data)
+            self.logger.info(str(sequenceNo) + ":" + data)
             resp = data.split(":")
             if(resp[0]=="ACK") and int(resp[1]) == sequenceNo:
                 return True
@@ -58,7 +59,7 @@ class RUDP_client_NACK():
                 while( not self.waitACK(sequenceNoNack)):
                     self.s.sendto(self.sequenceMapping[sequenceNoNack], (self.dstIP, self.dstPort) )
         except Exception as e:
-            print(e)
+            self.logger.info(e)
             return False
 
     def deleteConnection(self):

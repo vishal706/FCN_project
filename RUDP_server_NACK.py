@@ -6,8 +6,9 @@ import threading
 
 
 class RUDP_server_NACK():
-    def __init__(self, port, segmentSize, bufferSize):
-        print("Initialising :: " + self.__class__.__name__)
+    def __init__(self, logger, port, segmentSize, bufferSize):
+        self.logger = logger
+        logger.info("Initialising :: " + self.__class__.__name__)
         self.buffer = {}
         self.nextSequenceNo = 0
         self.port = port
@@ -23,7 +24,7 @@ class RUDP_server_NACK():
         self.s.bind( (self.selfip, self.port) )
     
     def _on_timeout(self):
-        print("timeout occured")
+        self.logger.info("timeout occured")
         self.sendresp("NACK:", self.addr[0], self.addr[1])
 
     def _start_timer(self):
@@ -42,7 +43,7 @@ class RUDP_server_NACK():
 
     def sendresp(self, respType, sequenceNo, addr_0, addr_1):
         resp = respType + str(sequenceNo)
-        # print(resp)
+        # self.logger.info(resp)
         self.s.sendto(resp.encode(), (addr_0, addr_1) )
     
     def ReceiveData(self, filename):
