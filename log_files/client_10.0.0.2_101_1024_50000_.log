@@ -1,0 +1,10 @@
+2021-12-04 21:58:21,349 - root - INFO - Initialising :: RUDP_client3
+2021-12-04 21:58:25,856 - root - INFO - -1:ACK:-1
+2021-12-04 21:58:27,859 - root - INFO - Connection Established from server
+2021-12-04 21:58:27,859 - root - INFO - Connection established
+2021-12-04 21:58:27,859 - root - INFO - Total segments :: 37
+2021-12-04 21:58:28,136 - root - INFO - NACK-1
+2021-12-04 21:58:28,408 - root - INFO - 7:NACK:7
+2021-12-04 21:58:28,408 - root - INFO - 1:1024
+2021-12-04 21:58:28,690 - root - INFO - NACK-37
+2021-12-04 21:58:28,690 - root - INFO - Sending complete in time:: 4.836675603000913

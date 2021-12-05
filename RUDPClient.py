@@ -1,5 +1,7 @@
 import optparse
 from timeit import default_timer as timer
+import logging
+import os
 
 # from RUDP_client_MIMD import RUDP_client_MIMD
 # from RUDP_client_minimal import RUDP_client_minimal
@@ -18,17 +20,34 @@ parser.add_option('-m', dest='msg')
 
 (options, args) = parser.parse_args()
 
-# Rudp = RUDP_client3('127.0.0.1', options.dstIP, options.dstPort, options.dstPort,\
-#      options.segmentSize, options.initialWindowSize, options.maxWindowSize)
-Rudp = RUDP_client2('127.0.0.1', options.dstIP, options.dstPort, options.dstPort,\
+log_location = "./log_files/client_" +  options.dstIP + "_" + str(options.dstPort)\
+     + "_" + str(options.initialWindowSize) + "_" + str(options.maxWindowSize) + "_" +".log"
+os.makedirs(os.path.dirname(log_location), exist_ok=True)
+logger = logging.getLogger()
+fhandler = logging.FileHandler(filename=log_location, mode='w')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fhandler.setFormatter(formatter)
+logger.addHandler(fhandler)
+
+consoleHandler = logging.StreamHandler()
+consoleFormatter = logging.Formatter('%(message)s')
+consoleHandler.setFormatter(consoleFormatter)
+logger.addHandler(consoleHandler)
+
+
+logger.setLevel(logging.DEBUG)
+
+Rudp = RUDP_client3(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort,\
      options.segmentSize, options.initialWindowSize, options.maxWindowSize)
+# Rudp = RUDP_client2(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort,\
+#      options.segmentSize, options.initialWindowSize, options.maxWindowSize)
 # Rudp = RUDP_client_minimal('127.0.0.1', options.dstIP, options.dstPort, options.dstPort, options.segmentSize)
 
 start = timer()
 Rudp.createConnection()
-print("Connection established")
+logger.info("Connection established")
 file_name = "./send_files/" + options.srcFile
 Rudp.sendData(file_name)
 end = timer()
 
-print("Sending complete in time:: " + str(end - start))
+logger.info("Sending complete in time:: " + str(end - start))
