@@ -1,0 +1,99 @@
+2021-12-04 22:41:20,843 - root - INFO - Initialising :: RUDP_server_MIMD
+2021-12-04 22:41:23,052 - root - INFO - Received b'\x80\x03cPacket\nPacket\nq\x00)\x81q\x01}q\x02(X\n\x00\x00\x00sequenceNoq\x03K\x00X\x07\x00\x00\x00payloadq\x04Cd1-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n2-aaaaaaaaaaq\x05ub.'from server
+2021-12-04 22:41:23,052 - root - INFO - Connection established
+2021-12-04 22:41:23,074 - root - INFO - Received packet:
+2021-12-04 22:41:23,074 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:23,074 - root - INFO - writing 0
+2021-12-04 22:41:23,325 - root - INFO - timeout occured
+2021-12-04 22:41:23,577 - root - INFO - timeout occured
+2021-12-04 22:41:23,601 - root - INFO - Received packet:
+2021-12-04 22:41:23,601 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:23,833 - root - INFO - timeout occured
+2021-12-04 22:41:23,854 - root - INFO - Received packet:
+2021-12-04 22:41:23,855 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:24,084 - root - INFO - timeout occured
+2021-12-04 22:41:24,105 - root - INFO - Received packet:
+2021-12-04 22:41:24,105 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:24,334 - root - INFO - timeout occured
+2021-12-04 22:41:24,356 - root - INFO - Received packet:
+2021-12-04 22:41:24,356 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:24,586 - root - INFO - timeout occured
+2021-12-04 22:41:24,609 - root - INFO - Received packet:
+2021-12-04 22:41:24,609 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:24,837 - root - INFO - timeout occured
+2021-12-04 22:41:24,860 - root - INFO - Received packet:
+2021-12-04 22:41:24,860 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:25,088 - root - INFO - timeout occured
+2021-12-04 22:41:25,339 - root - INFO - timeout occured
+2021-12-04 22:41:25,360 - root - INFO - Received packet:
+2021-12-04 22:41:25,360 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:25,590 - root - INFO - timeout occured
+2021-12-04 22:41:25,611 - root - INFO - Received packet:
+2021-12-04 22:41:25,611 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:25,841 - root - INFO - timeout occured
+2021-12-04 22:41:25,862 - root - INFO - Received packet:
+2021-12-04 22:41:25,862 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:26,092 - root - INFO - timeout occured
+2021-12-04 22:41:26,112 - root - INFO - Received packet:
+2021-12-04 22:41:26,113 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:26,343 - root - INFO - timeout occured
+2021-12-04 22:41:26,594 - root - INFO - timeout occured
+2021-12-04 22:41:26,615 - root - INFO - Received packet:
+2021-12-04 22:41:26,615 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:26,845 - root - INFO - timeout occured
+2021-12-04 22:41:27,096 - root - INFO - timeout occured
+2021-12-04 22:41:27,117 - root - INFO - Received packet:
+2021-12-04 22:41:27,118 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:27,347 - root - INFO - timeout occured
+2021-12-04 22:41:27,368 - root - INFO - Received packet:
+2021-12-04 22:41:27,369 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:27,599 - root - INFO - timeout occured
+2021-12-04 22:41:27,620 - root - INFO - Received packet:
+2021-12-04 22:41:27,620 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:27,850 - root - INFO - timeout occured
+2021-12-04 22:41:27,871 - root - INFO - Received packet:
+2021-12-04 22:41:27,871 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:28,102 - root - INFO - timeout occured
+2021-12-04 22:41:28,126 - root - INFO - Received packet:
+2021-12-04 22:41:28,127 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:28,356 - root - INFO - timeout occured
+2021-12-04 22:41:28,381 - root - INFO - Received packet:
+2021-12-04 22:41:28,381 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:28,608 - root - INFO - timeout occured
+2021-12-04 22:41:28,631 - root - INFO - Received packet:
+2021-12-04 22:41:28,631 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:28,859 - root - INFO - timeout occured
+2021-12-04 22:41:28,880 - root - INFO - Received packet:
+2021-12-04 22:41:28,881 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:29,110 - root - INFO - timeout occured
+2021-12-04 22:41:29,133 - root - INFO - Received packet:
+2021-12-04 22:41:29,133 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:29,361 - root - INFO - timeout occured
+2021-12-04 22:41:29,389 - root - INFO - Received packet:
+2021-12-04 22:41:29,389 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:29,618 - root - INFO - timeout occured
+2021-12-04 22:41:29,640 - root - INFO - Received packet:
+2021-12-04 22:41:29,640 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:29,869 - root - INFO - timeout occured
+2021-12-04 22:41:29,890 - root - INFO - Received packet:
+2021-12-04 22:41:29,890 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:30,119 - root - INFO - timeout occured
+2021-12-04 22:41:30,140 - root - INFO - Received packet:
+2021-12-04 22:41:30,140 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:30,370 - root - INFO - timeout occured
+2021-12-04 22:41:30,621 - root - INFO - timeout occured
+2021-12-04 22:41:30,872 - root - INFO - timeout occured
+2021-12-04 22:41:30,893 - root - INFO - Received packet:
+2021-12-04 22:41:30,894 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:31,123 - root - INFO - timeout occured
+2021-12-04 22:41:31,375 - root - INFO - timeout occured
+2021-12-04 22:41:31,397 - root - INFO - Received packet:
+2021-12-04 22:41:31,397 - root - INFO - buffersize:0-Received:0
+2021-12-04 22:41:31,627 - root - INFO - timeout occured
+2021-12-04 22:41:31,879 - root - INFO - timeout occured
+2021-12-04 22:41:32,133 - root - INFO - timeout occured
+2021-12-04 22:41:32,384 - root - INFO - timeout occured
+2021-12-04 22:41:32,635 - root - INFO - timeout occured
+2021-12-04 22:41:32,886 - root - INFO - timeout occured
+2021-12-04 22:41:33,137 - root - INFO - timeout occured
+2021-12-04 22:41:33,388 - root - INFO - timeout occured
