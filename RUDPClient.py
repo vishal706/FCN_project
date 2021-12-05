@@ -7,8 +7,6 @@ from RUDP_client1 import RUDP_client1
 from RUDP_client_NACK import RUDP_client_NACK
 from RUDP_client_minimal import RUDP_client_minimal
 from RUDP_client_MIMD_RTT_calculation import RUDP_client_MIMD_RTT_calculation
-# from RUDP_client_MIMD import RUDP_client_MIMD
-# from RUDP_client_minimal import RUDP_client_minimal
 from RUDP_client3 import RUDP_client3
 from RUDP_client2 import RUDP_client2
 
@@ -16,13 +14,13 @@ from RUDP_client2 import RUDP_client2
 parser = optparse.OptionParser()
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
 parser.add_option('-p', dest='port', type='int', default=12345)
-parser.add_option('-s', dest='segmentSize', default=100)
+parser.add_option('-s', dest='segmentSize', type='int', default=100)
 parser.add_option('-f', dest='srcFile', default="README.md")
 parser.add_option('--icw', dest='initialWindowSize', type='int', default=1024)
 parser.add_option('--mcw', dest='maxWindowSize', type='int', default=50000)
 parser.add_option('--fT', dest='feedbackTime', type='float', default=0.25)
 parser.add_option('--priority', dest='priority', type='int', default=100)
-parser.add_option('-m', dest='msg')
+# parser.add_option('-m', dest='msg')
 
 (options, args) = parser.parse_args()
 
@@ -44,7 +42,7 @@ logger.addHandler(consoleHandler)
 
 
 logger.setLevel(logging.DEBUG)
-
+logger.info(options)
 if options.priority == 1:
       Rudp = RUDP_client1(logger, '127.0.0.1', options.dstIP, options.port, options.port,\
            options.segmentSize, options.initialWindowSize, options.maxWindowSize)
