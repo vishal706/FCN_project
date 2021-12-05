@@ -80,7 +80,7 @@ class RUDP_client_MIMD():
     def sendPacket(self, next):
         self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort) )
         while not self.waitACK(next):
-            self.sendPacket(next)
+            self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort) )
     
     def waitACK(self, sequenceNo):
         try:
@@ -107,10 +107,10 @@ class RUDP_client_MIMD():
             # self.timeoutCounter = 0
             if(resp[0]=="ECN"):
                 #Decrease window since congestion detected
-                k=resp[1]-1
-                while k in self.sequenceMapping:
-                    del self.sequenceMapping[k]
-                    k-=1
+                # k=resp[1]-1
+                # while k in self.sequenceMapping:
+                #     del self.sequenceMapping[k]
+                    # k-=1
                 self.cw = max(self.initialWindowSize, int((self.cw)/2))
             else:
                 #Increase window since no congestion detected

@@ -80,7 +80,7 @@ class RUDP_client2():
         self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort) )
         n =self.waitACK(next)
         while n <= next:
-            self.sendPacket(next)
+            self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort) )
             n = self.waitACK(next)
         return n
     

@@ -33,7 +33,7 @@ class SingleSwitchTopo( Topo ):
                                 cpu=.5 / n)
             if lossy:
                 # 10 Mbps, 5ms delay, 10% packet loss
-                self.addLink(host, switch, bw=100, delay='5ms', loss=5, use_htb=True)
+                self.addLink(host, switch, bw=100, delay='5ms', loss=20, use_htb=True)
             else:
                 # 10 Mbps, 5ms delay, no packet loss
                 self.addLink(host, switch,

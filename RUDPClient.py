@@ -12,7 +12,7 @@ from RUDP_client_MIMD_RTT_calculation import RUDP_client_MIMD_RTT_calculation
 from RUDP_client3 import RUDP_client3
 from RUDP_client2 import RUDP_client2
 
-# python3 RUDPClient.py -i 10.0.0.2  -p 101 -f "send.txt"
+# python3 RUDPClient.py -i "10.0.0.2" -p "101" -f "send.txt" 
 parser = optparse.OptionParser()
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
 parser.add_option('-p', dest='dstPort', type='int', default=12345)
@@ -42,13 +42,13 @@ logger.addHandler(consoleHandler)
 logger.setLevel(logging.DEBUG)
 
 # Rudp = RUDP_client3(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort,\
-     # options.segmentSize, options.initialWindowSize, options.maxWindowSize)
+#      options.segmentSize, options.initialWindowSize, options.maxWindowSize)
 # Rudp = RUDP_client2(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort,\
 #      options.segmentSize, options.initialWindowSize, options.maxWindowSize)
 # Rudp = RUDP_client_minimal(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort, options.segmentSize)
-# Rudp = RUDP_client_MIMD(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort,\
-     #  options.segmentSize, options.initialWindowSize, options.maxWindowSize)
-Rudp = RUDP_client_NACK(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort, options.segmentSize)
+Rudp = RUDP_client_MIMD(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort,\
+      options.segmentSize, options.initialWindowSize, options.maxWindowSize)
+# Rudp = RUDP_client_NACK(logger, '127.0.0.1', options.dstIP, options.dstPort, options.dstPort, options.segmentSize)
 
 start = timer()
 Rudp.createConnection()

@@ -1,0 +1,188 @@
+2021-12-05 08:34:06,262 - root - INFO - Initialising :: RUDP_server3
+2021-12-05 08:34:09,475 - root - INFO - Received b'\x80\x03cPacket\nPacket\nq\x00)\x81q\x01}q\x02(X\n\x00\x00\x00sequenceNoq\x03K\x00X\x07\x00\x00\x00payloadq\x04Cd1-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n2-aaaaaaaaaaq\x05ub.'from server
+2021-12-05 08:34:09,475 - root - INFO - Connection established
+2021-12-05 08:34:09,475 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:0-Received:1nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:1-Received:2nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:2-Received:3nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:3-Received:4nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:4-Received:5nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:5-Received:6nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:6-Received:7nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:7-Received:9nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:8-Received:10nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:9-Received:11nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:10-Received:12nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:11-Received:13nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,476 - root - INFO - buffersize:12-Received:14nextseqno:0
+2021-12-05 08:34:09,476 - root - INFO - Received packet:
+2021-12-05 08:34:09,477 - root - INFO - buffersize:13-Received:15nextseqno:0
+2021-12-05 08:34:09,477 - root - INFO - Received packet:
+2021-12-05 08:34:09,477 - root - INFO - buffersize:14-Received:16nextseqno:0
+2021-12-05 08:34:09,477 - root - INFO - Received packet:
+2021-12-05 08:34:09,477 - root - INFO - buffersize:15-Received:17nextseqno:0
+2021-12-05 08:34:09,481 - root - INFO - Received packet:
+2021-12-05 08:34:09,481 - root - INFO - buffersize:16-Received:18nextseqno:0
+2021-12-05 08:34:09,482 - root - INFO - Received packet:
+2021-12-05 08:34:09,482 - root - INFO - buffersize:17-Received:19nextseqno:0
+2021-12-05 08:34:09,482 - root - INFO - Received packet:
+2021-12-05 08:34:09,482 - root - INFO - buffersize:18-Received:20nextseqno:0
+2021-12-05 08:34:09,482 - root - INFO - Received packet:
+2021-12-05 08:34:09,482 - root - INFO - buffersize:19-Received:21nextseqno:0
+2021-12-05 08:34:09,482 - root - INFO - Received packet:
+2021-12-05 08:34:09,482 - root - INFO - buffersize:20-Received:22nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,485 - root - INFO - buffersize:21-Received:23nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,485 - root - INFO - buffersize:22-Received:24nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,485 - root - INFO - buffersize:23-Received:25nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,485 - root - INFO - buffersize:24-Received:26nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,485 - root - INFO - buffersize:25-Received:27nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,485 - root - INFO - buffersize:26-Received:28nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,485 - root - INFO - buffersize:27-Received:29nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,485 - root - INFO - buffersize:28-Received:30nextseqno:0
+2021-12-05 08:34:09,485 - root - INFO - Received packet:
+2021-12-05 08:34:09,486 - root - INFO - buffersize:29-Received:31nextseqno:0
+2021-12-05 08:34:09,486 - root - INFO - Received packet:
+2021-12-05 08:34:09,486 - root - INFO - buffersize:30-Received:32nextseqno:0
+2021-12-05 08:34:09,486 - root - INFO - Received packet:
+2021-12-05 08:34:09,486 - root - INFO - buffersize:31-Received:33nextseqno:0
+2021-12-05 08:34:09,486 - root - INFO - Received packet:
+2021-12-05 08:34:09,486 - root - INFO - buffersize:32-Received:34nextseqno:0
+2021-12-05 08:34:09,486 - root - INFO - Received packet:
+2021-12-05 08:34:09,486 - root - INFO - buffersize:33-Received:35nextseqno:0
+2021-12-05 08:34:09,486 - root - INFO - Received packet:
+2021-12-05 08:34:09,486 - root - INFO - buffersize:34-Received:36nextseqno:0
+2021-12-05 08:34:09,498 - root - INFO - Received packet:
+2021-12-05 08:34:09,498 - root - INFO - buffersize:35-Received:0nextseqno:0
+2021-12-05 08:34:09,498 - root - INFO - writing 0
+2021-12-05 08:34:09,498 - root - INFO - writing 1
+2021-12-05 08:34:09,499 - root - INFO - writing 2
+2021-12-05 08:34:09,499 - root - INFO - writing 3
+2021-12-05 08:34:09,499 - root - INFO - writing 4
+2021-12-05 08:34:09,499 - root - INFO - writing 5
+2021-12-05 08:34:09,499 - root - INFO - writing 6
+2021-12-05 08:34:09,499 - root - INFO - writing 7
+2021-12-05 08:34:09,499 - root - INFO - Received packet:
+2021-12-05 08:34:09,499 - root - INFO - buffersize:28-Received:1nextseqno:8
+2021-12-05 08:34:09,499 - root - INFO - Received packet:
+2021-12-05 08:34:09,499 - root - INFO - buffersize:28-Received:2nextseqno:8
+2021-12-05 08:34:09,499 - root - INFO - Received packet:
+2021-12-05 08:34:09,499 - root - INFO - buffersize:28-Received:3nextseqno:8
+2021-12-05 08:34:09,499 - root - INFO - Received packet:
+2021-12-05 08:34:09,499 - root - INFO - buffersize:28-Received:6nextseqno:8
+2021-12-05 08:34:09,499 - root - INFO - Received packet:
+2021-12-05 08:34:09,499 - root - INFO - buffersize:28-Received:7nextseqno:8
+2021-12-05 08:34:09,499 - root - INFO - Received packet:
+2021-12-05 08:34:09,499 - root - INFO - buffersize:28-Received:8nextseqno:8
+2021-12-05 08:34:09,500 - root - INFO - writing 8
+2021-12-05 08:34:09,500 - root - INFO - writing 9
+2021-12-05 08:34:09,500 - root - INFO - writing 10
+2021-12-05 08:34:09,500 - root - INFO - writing 11
+2021-12-05 08:34:09,500 - root - INFO - writing 12
+2021-12-05 08:34:09,500 - root - INFO - writing 13
+2021-12-05 08:34:09,500 - root - INFO - writing 14
+2021-12-05 08:34:09,500 - root - INFO - writing 15
+2021-12-05 08:34:09,500 - root - INFO - writing 16
+2021-12-05 08:34:09,500 - root - INFO - writing 17
+2021-12-05 08:34:09,500 - root - INFO - writing 18
+2021-12-05 08:34:09,501 - root - INFO - writing 19
+2021-12-05 08:34:09,501 - root - INFO - writing 20
+2021-12-05 08:34:09,501 - root - INFO - writing 21
+2021-12-05 08:34:09,501 - root - INFO - writing 22
+2021-12-05 08:34:09,501 - root - INFO - writing 23
+2021-12-05 08:34:09,501 - root - INFO - writing 24
+2021-12-05 08:34:09,501 - root - INFO - writing 25
+2021-12-05 08:34:09,501 - root - INFO - writing 26
+2021-12-05 08:34:09,501 - root - INFO - writing 27
+2021-12-05 08:34:09,501 - root - INFO - writing 28
+2021-12-05 08:34:09,501 - root - INFO - writing 29
+2021-12-05 08:34:09,501 - root - INFO - writing 30
+2021-12-05 08:34:09,502 - root - INFO - writing 31
+2021-12-05 08:34:09,502 - root - INFO - writing 32
+2021-12-05 08:34:09,502 - root - INFO - writing 33
+2021-12-05 08:34:09,503 - root - INFO - writing 34
+2021-12-05 08:34:09,503 - root - INFO - writing 35
+2021-12-05 08:34:09,503 - root - INFO - writing 36
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:10nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:11nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:12nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:13nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:15nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:16nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:17nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:18nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,503 - root - INFO - buffersize:0-Received:19nextseqno:37
+2021-12-05 08:34:09,503 - root - INFO - Received packet:
+2021-12-05 08:34:09,504 - root - INFO - buffersize:0-Received:20nextseqno:37
+2021-12-05 08:34:09,504 - root - INFO - Received packet:
+2021-12-05 08:34:09,504 - root - INFO - buffersize:0-Received:21nextseqno:37
+2021-12-05 08:34:09,504 - root - INFO - Received packet:
+2021-12-05 08:34:09,504 - root - INFO - buffersize:0-Received:22nextseqno:37
+2021-12-05 08:34:09,504 - root - INFO - Received packet:
+2021-12-05 08:34:09,504 - root - INFO - buffersize:0-Received:23nextseqno:37
+2021-12-05 08:34:09,504 - root - INFO - Received packet:
+2021-12-05 08:34:09,504 - root - INFO - buffersize:0-Received:24nextseqno:37
+2021-12-05 08:34:09,504 - root - INFO - Received packet:
+2021-12-05 08:34:09,504 - root - INFO - buffersize:0-Received:25nextseqno:37
+2021-12-05 08:34:09,504 - root - INFO - Received packet:
+2021-12-05 08:34:09,505 - root - INFO - buffersize:0-Received:26nextseqno:37
+2021-12-05 08:34:09,505 - root - INFO - Received packet:
+2021-12-05 08:34:09,505 - root - INFO - buffersize:0-Received:27nextseqno:37
+2021-12-05 08:34:09,505 - root - INFO - Received packet:
+2021-12-05 08:34:09,505 - root - INFO - buffersize:0-Received:28nextseqno:37
+2021-12-05 08:34:09,505 - root - INFO - Received packet:
+2021-12-05 08:34:09,505 - root - INFO - buffersize:0-Received:29nextseqno:37
+2021-12-05 08:34:09,505 - root - INFO - Received packet:
+2021-12-05 08:34:09,505 - root - INFO - buffersize:0-Received:30nextseqno:37
+2021-12-05 08:34:09,505 - root - INFO - Received packet:
+2021-12-05 08:34:09,506 - root - INFO - buffersize:0-Received:32nextseqno:37
+2021-12-05 08:34:09,506 - root - INFO - Received packet:
+2021-12-05 08:34:09,506 - root - INFO - buffersize:0-Received:33nextseqno:37
+2021-12-05 08:34:09,506 - root - INFO - Received packet:
+2021-12-05 08:34:09,506 - root - INFO - buffersize:0-Received:34nextseqno:37
+2021-12-05 08:34:09,506 - root - INFO - Received packet:
+2021-12-05 08:34:09,506 - root - INFO - buffersize:0-Received:35nextseqno:37
+2021-12-05 08:34:09,506 - root - INFO - Received packet:
+2021-12-05 08:34:09,506 - root - INFO - buffersize:0-Received:36nextseqno:37
+2021-12-05 08:34:09,751 - root - INFO - timeout occured
+2021-12-05 08:34:10,003 - root - INFO - timeout occured
+2021-12-05 08:34:10,255 - root - INFO - timeout occured
+2021-12-05 08:34:10,509 - root - INFO - timeout occured
+2021-12-05 08:34:10,766 - root - INFO - timeout occured
+2021-12-05 08:34:11,018 - root - INFO - timeout occured
+2021-12-05 08:34:11,270 - root - INFO - timeout occured
+2021-12-05 08:34:11,521 - root - INFO - timeout occured
+2021-12-05 08:34:11,776 - root - INFO - timeout occured
+2021-12-05 08:34:12,028 - root - INFO - timeout occured
+2021-12-05 08:34:12,279 - root - INFO - timeout occured
+2021-12-05 08:34:12,534 - root - INFO - timeout occured
+2021-12-05 08:34:12,785 - root - INFO - timeout occured
+2021-12-05 08:34:13,039 - root - INFO - timeout occured

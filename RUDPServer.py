@@ -15,7 +15,7 @@ from RUDP_server2 import RUDP_server2
 
 parser = optparse.OptionParser()
 
-#  python3 RUDPServer.py -i "10.0.0.2" -p 101 -f "recv.txt" 
+#  python3 RUDPServer.py -i "10.0.0.2" -p "101" -f "recv.txt" --fT "0.25"
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
 parser.add_option('-p', dest='port', type='int', default=12345)
 parser.add_option('-s', dest='segmentSize', default=100)
@@ -23,16 +23,19 @@ parser.add_option('-b', dest='bufferSize', type='int', default=50000)
 parser.add_option('-f', dest='dstFile', default="README.md")
 parser.add_option('--icw', dest='initialWindowSize', type='int', default=1024)
 parser.add_option('--mcw', dest='maxWindowSize', type='int', default=50000)
+parser.add_option('--fT', dest='feedbackTime', type='float', default=0.25)
 
 
 (options, args) = parser.parse_args()
 
 
 file_location = "./received_files/" +  options.dstIP + "_" + str(options.port)\
-     + "_" + str(options.initialWindowSize) + "_" + str(options.maxWindowSize) + "_" + options.dstFile
+     + "_" + str(options.initialWindowSize) + "_" + str(options.feedbackTime) +\
+           "_" + str(options.maxWindowSize) + "_" + options.dstFile
 
 log_location = "./log_files/server_" +  options.dstIP + "_" + str(options.port)\
-     + "_" + str(options.initialWindowSize) + "_" + str(options.maxWindowSize) + "_" +".log"
+     + "_" + str(options.initialWindowSize) + "_" + str(options.feedbackTime) +\
+           "_" + str(options.maxWindowSize) + "_" +".log"
 
 
 os.makedirs(os.path.dirname(log_location), exist_ok=True)
@@ -51,10 +54,10 @@ logger.addHandler(consoleHandler)
 logger.setLevel(logging.DEBUG)
 
 
-# Rudp = RUDP_server3(logger, options.port, options.segmentSize, options.bufferSize)
-# Rudp = RUDP_server2(logger, options.port, options.segmentSize, options.bufferSize)
-# Rudp = RUDP_server_minimal(logger, options.port, options.segmentSize, options.bufferSize)
-Rudp = RUDP_server_MIMD(logger, options.port, options.segmentSize, options.bufferSize)
+# Rudp = RUDP_server3(logger, options.port, options.segmentSize, options.bufferSize, options.feedbackTime)
+# Rudp = RUDP_server2(logger, options.port, options.segmentSize, options.bufferSize, options.feedbackTime)
+# Rudp = RUDP_server_minimal(logger, options.port, options.segmentSize, options.bufferSize, options.feedbackTime)
+Rudp = RUDP_server_MIMD(logger, options.port, options.segmentSize, options.bufferSize, options.feedbackTime)
 
 start = timer()
 Rudp.createConnection()

@@ -79,7 +79,7 @@ class RUDP_client_MIMD_RTT_calculation():
     def sendPacket(self, next):
         self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort))
         while not self.waitACK(next):
-            self.sendPacket(next)
+            self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort))
 
     def waitACK(self, sequenceNo):
         try:

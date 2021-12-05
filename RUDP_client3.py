@@ -64,7 +64,7 @@ class RUDP_client3():
                 if (self.sequenceNo + i) > self.packetIndex:
                     break
             next = self.waitNACK()
-
+            self.logger.info(str(self.sequenceNo) + ":"  + str(self.cw))
             if next >= self.packetIndex:#end
                 return
             elif next == -1:
@@ -80,18 +80,20 @@ class RUDP_client3():
     def sendPacket(self, next):
         self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort) )
         while not self.waitACK(next):
-            self.sendPacket(next)
+            self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort) )
     
     def waitACK(self, sequenceNo):
         try:
             data, addr = self.s.recvfrom(100)
             data = data.decode()
             resp = data.split(":")
-            self.logger.info(str(resp[1]) + ":" + data)
-            if(resp[0]=="ACK" and int(resp[1]) == sequenceNo):
+            resp[1] = int(resp[1])
+            self.logger.info(resp[0]  + ":" + str(resp[1]) + ":" + str(sequenceNo))
+            if(resp[0]=="ACK" and resp[1] == sequenceNo):
                 return True
-            if(resp[0]=="NACK" and int(resp[1]) > sequenceNo):
+            if(resp[0]=="NACK" and resp[1] > sequenceNo):
                 return True
+            return False
         except Exception as e:
             self.timeoutCounter += 1
             if self.timeoutCounter > self.maxTimeout:

@@ -17,7 +17,7 @@ import threading
 #     sendresp(s, -1, "ACK:", SenderIP, SenderPort)
 
 class RUDP_server2():
-    def __init__(self, logger, port, segmentSize, bufferSize):
+    def __init__(self, logger, port, segmentSize, bufferSize, feedbackTime):
         self.logger = logger
         logger.info("Initialising :: " + self.__class__.__name__)
 
@@ -30,6 +30,7 @@ class RUDP_server2():
         self.bufferSize = bufferSize
         self.addr = None
         self.timer = None
+        self.feedbackTime = feedbackTime
     
     def createConnection(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -49,7 +50,7 @@ class RUDP_server2():
 
     def _start_timer(self):
         # self.OutputLogger("[_start_timer] Starting timer for round {} max_time : self.get_round_timer() {} timestamp {}".format( roundNo,self.get_round_timer(),time.time()))
-        self.timer = threading.Timer(0.25, self._on_timeout)
+        self.timer = threading.Timer(self.feedbackTime, self._on_timeout)
         self.timer.start()
 
     def _stop_timer(self):
