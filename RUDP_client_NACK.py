@@ -9,6 +9,7 @@ import time
 class RUDP_client_NACK():
 
     def __init__(self, srcIP, dstIP, srcPort, dstPort, segmentSize):
+        print("Initialising :: " + self.__class__.__name__)
         self.srcIP = ni.ifaddresses(str(ni.interfaces()[-1]))[ni.AF_INET][0]['addr']
         self.dstIP = dstIP
         self.srcPort = srcPort
