@@ -5,7 +5,7 @@ import pickle
 import threading
 
 
-class RUDP_server_MIMD():
+class RUDP_server1():
     '''Server/ Receiver sends the NACK feedback reglarly a interval of feedbackTime'''
     def __init__(self, logger, port, segmentSize, bufferSize, feedbackTime):
         self.logger = logger
