@@ -36,7 +36,7 @@ while True:
    l = f.read(options.segmentSize)
    while (l):
       conn.send(l)
-      print('Sent ',repr(l))
+      # print('Sent ',repr(l))
       l = f.read(options.segmentSize)
    f.close()
    end = timer()

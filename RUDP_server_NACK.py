@@ -7,6 +7,7 @@ import threading
 
 class RUDP_server_NACK():
     def __init__(self, port, segmentSize, bufferSize):
+        print("Initialising :: " + self.__class__.__name__)
         self.buffer = {}
         self.nextSequenceNo = 0
         self.port = port

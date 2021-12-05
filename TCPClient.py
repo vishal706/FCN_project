@@ -30,7 +30,7 @@ with open(("TCP_" + options.srcFile), 'wb') as f:
         data = s.recv(options.segmentSize)
         if not data:
             break
-        print(data)
+        # print(data)
         f.write(data)
 
 f.close()

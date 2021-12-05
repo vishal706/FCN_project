@@ -6,7 +6,7 @@ import codecs
 import pickle
 import time
 
-class RUDP_client_MIMD():
+class RUDP_client2():
     '''Multiplicative Increase and Multiplicative decrease
     IF a packet is lost, teh sliding windows restarts from the lost packet'''
     def __init__(self, srcIP, dstIP, srcPort, dstPort, segmentSize, initialWindowSize, maxWindowSize):
@@ -34,9 +34,9 @@ class RUDP_client_MIMD():
         intialMessage = "Hi"
         self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
         time.sleep(2)
-        if self.waitACK(-1):
+        if self.waitACK(-1) == 1:
             time.sleep(2)
-            # self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
+            self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
             print("Connection Established from server")
         return
                 
@@ -78,8 +78,11 @@ class RUDP_client_MIMD():
     
     def sendPacket(self, next):
         self.s.sendto(self.sequenceMapping[next], (self.dstIP, self.dstPort) )
-        while not self.waitACK(next):
+        n =self.waitACK(next)
+        while n <= next:
             self.sendPacket(next)
+            n = self.waitACK(next)
+        return n
     
     def waitACK(self, sequenceNo):
         try:
@@ -88,20 +91,22 @@ class RUDP_client_MIMD():
             resp = data.split(":")
             print(str(resp[1]) + ":" + data)
             if(resp[0]=="ACK" and int(resp[1]) == sequenceNo):
-                return True
+                return 1
+            if(resp[0]=="NACK"):
+                return int(resp[1])
         except Exception as e:
             self.timeoutCounter += 1
             if self.timeoutCounter > self.maxTimeout:
                 self.timeoutCounter = 0
                 print(e)
-            return False
+            return 0
 
     def waitNACK(self):
         try:
             data, addr = self.s.recvfrom(100)
             data = data.decode()
             resp = data.split(":")
-            print("waitNACK-" + str(resp))
+            # print("waitNACK-" + str(resp))
             resp[1]=int(resp[1])
             # self.timeoutCounter = 0
             if(resp[0]=="ECN"):
@@ -113,7 +118,10 @@ class RUDP_client_MIMD():
                 self.cw = max(self.initialWindowSize, int((self.cw)/2))
             else:
                 #Increase window since no congestion detected
-                self.cw = min(self.maxWindowSize, int((self.cw)*2))
+                # self.cw = min(self.maxWindowSize, int((self.cw)*2))
+                print("NACK-" + str(resp[1]))
+                if resp[1] < self.packetIndex:
+                    return self.sendPacket(resp[1])
             return resp[1]
             
         except Exception as e:
