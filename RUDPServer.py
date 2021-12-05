@@ -6,7 +6,7 @@ import os
 #Create and configure logger
 
 # from RUDP_server_MIMD import RUDP_server_MIMD
-# from RUDP_server_minimal import RUDP_server_minimal
+from RUDP_server_minimal import RUDP_server_minimal
 from RUDP_server3 import RUDP_server3
 from RUDP_server2 import RUDP_server2
 parser = optparse.OptionParser()
@@ -47,9 +47,9 @@ logger.addHandler(consoleHandler)
 logger.setLevel(logging.DEBUG)
 
 
-Rudp = RUDP_server3(logger, options.port, options.segmentSize, options.bufferSize)
+# Rudp = RUDP_server3(logger, options.port, options.segmentSize, options.bufferSize)
 # Rudp = RUDP_server2(logger, options.port, options.segmentSize, options.bufferSize)
-# Rudp = RUDP_server_minimal(options.port, options.segmentSize, options.bufferSize)
+Rudp = RUDP_server_minimal(logger, options.port, options.segmentSize, options.bufferSize)
 
 start = timer()
 Rudp.createConnection()

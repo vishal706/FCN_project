@@ -8,15 +8,16 @@ import pickle
 #     global SenderIP
 #     global SenderPort
 #     data, addr = s.recvfrom(options.segmentSize + 500)
-#     print(data)
+#     self.logger.info(data)
 #     SenderIP = addr[0]
 #     SenderPort = addr[1]
-#     print("Connection Established from server" + SenderIP + ":" + str(SenderPort))
+#     self.logger.info("Connection Established from server" + SenderIP + ":" + str(SenderPort))
 #     sendresp(s, -1, "ACK:", SenderIP, SenderPort)
 
 class RUDP_server_minimal():
-    def __init__(self, port, segmentSize, bufferSize):
-        print("Initialising :: " + self.__class__.__name__)
+    def __init__(self, logger, port, segmentSize, bufferSize):
+        self.logger = logger
+        logger.info("Initialising :: " + self.__class__.__name__)
         self.buffer = {}
         self.nextSequenceNo = 0
         self.port = port
@@ -33,11 +34,11 @@ class RUDP_server_minimal():
 
     def sendresp(self, respType, sequenceNo, addr_0, addr_1):
         resp = respType + str(sequenceNo)
-        # print(resp)
+        # self.logger.info(resp)
         self.s.sendto(resp.encode(), (addr_0, addr_1) )
     
     def ReceiveData(self, filename):
-        f = open(self.selfip + filename, 'wb+')
+        f = open(filename, 'wb+')
         while True:
             data, addr = self.s.recvfrom(self.segmentSize + 100)
             packet = pickle.loads(data)

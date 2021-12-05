@@ -17,7 +17,7 @@ import threading
 #     sendresp(s, -1, "ACK:", SenderIP, SenderPort)
 
 class RUDP_server3():
-    def __init__(self,logger,port, segmentSize, bufferSize):
+    def __init__(self, logger, port, segmentSize, bufferSize):
         self.logger = logger
         logger.info("Initialising :: " + self.__class__.__name__)
         self.buffer = {}
