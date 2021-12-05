@@ -114,10 +114,10 @@ class RUDP_client2():
             # self.timeoutCounter = 0
             if(resp[0]=="ECN"):
                 #Decrease window since congestion detected
-                k=resp[1]-1
-                while k in self.sequenceMapping:
-                    del self.sequenceMapping[k]
-                    k-=1
+                # k=resp[1]-1
+                # while k in self.sequenceMapping:
+                #     del self.sequenceMapping[k]
+                #     k-=1
                 self.cw = max(self.initialWindowSize, int((self.cw)/2))
             else:
                 #Increase window since no congestion detected

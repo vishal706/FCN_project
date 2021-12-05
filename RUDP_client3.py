@@ -121,7 +121,7 @@ class RUDP_client3():
                 self.cw = max(self.initialWindowSize, int((self.cw)/2))
             else:
                 #Increase window since no congestion detected
-                # self.cw = min(self.maxWindowSize, int((self.cw)*2))
+                self.cw = min(self.maxWindowSize, int((self.cw)*2))
                 self.logger.info("NACK-" + str(resp[1]))
                 if resp[1] < self.packetIndex:
                     self.sendPacket(resp[1])
