@@ -4,7 +4,7 @@ from timeit import default_timer as timer
 import logging
 import os
 
-from RUDP_client_MIMD import RUDP_client_MIMD
+from RUDP_client1 import RUDP_client1
 from RUDP_client_minimal import RUDP_client_minimal
 from RUDP_client_MIMD_RTT_calculation import RUDP_client_MIMD_RTT_calculation
 from RUDP_client3 import RUDP_client3
@@ -56,7 +56,7 @@ timer_3 = []
 #     timer_minimal.append(end - start)
 
 # for i in range(5):
-#     Rudp = RUDP_client_MIMD(logger, '127.0.0.1', options.dstIP, options.dstPort + 1, options.dstPort + 1, options.segmentSize,
+#     Rudp = RUDP_client1(logger, '127.0.0.1', options.dstIP, options.dstPort + 1, options.dstPort + 1, options.segmentSize,
 #                             options.initialWindowSize, options.maxWindowSize)
 #     start = timer()
 #     Rudp.createConnection()

@@ -4,11 +4,10 @@ from timeit import default_timer as timer
 import logging
 import os
 #Create and configure logger
-from RUDP_server_MIMD import RUDP_server_MIMD
+from RUDP_server1 import RUDP_server1
 from RUDP_server_minimal import RUDP_server_minimal
 from RUDP_server_MIMD_RTT_calculation import RUDP_server_MIMD_RTT_calculation
 
-from RUDP_server_MIMD import RUDP_server_MIMD
 from RUDP_server_minimal import RUDP_server_minimal
 from RUDP_server3 import RUDP_server3
 from RUDP_server2 import RUDP_server2
@@ -55,7 +54,7 @@ logger.addHandler(consoleHandler)
 logger.setLevel(logging.DEBUG)
 
 if options.serverType == 1:
-    Rudp = RUDP_server_MIMD(logger, options.port+1, options.segmentSize, options.bufferSize, options.feedbackTime)
+    Rudp = RUDP_server1(logger, options.port+1, options.segmentSize, options.bufferSize, options.feedbackTime)
 elif options.serverType == 2:
     Rudp = RUDP_server2(logger, options.port+2, options.segmentSize, options.bufferSize, options.feedbackTime)
 elif options.serverType == 3:
