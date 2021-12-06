@@ -31,7 +31,7 @@ parser.add_option('--priority', dest='priority', type='int', default=100)
 
 file_location = "./received_files/" +  options.dstIP + "_" + str(options.port)\
      + "_" + str(options.initialWindowSize) + "_" + str(options.feedbackTime) +\
-           "_" + str(options.maxWindowSize) + "_" + str(options.priority) +  "_-" + options.dstFile
+           "_" + str(options.maxWindowSize) + "_" + str(options.priority) +  "_" + options.dstFile
 
 log_location = "./log_files/server_" +  options.dstIP + "_" + str(options.port)\
      + "_" + str(options.initialWindowSize) + "_" + str(options.feedbackTime) +\

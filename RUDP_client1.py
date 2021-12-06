@@ -32,9 +32,10 @@ class RUDP_client1():
     def createConnection(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.settimeout(0.5) #setting timeout fro recv n socket
-        
-        intialMessage = "Hi"
-        self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
+        self.sequenceMapping[-1] = pickle.dumps(Packet(-1, "hi"))
+        # intialMessage = "Hi"
+        # self.s.sendto(self.sequenceMapping[-1], (self.dstIP, self.dstPort) )
+        self.s.sendto("Hi", (self.dstIP, self.dstPort) )
         time.sleep(2)
         if self.waitACK(-1):
             time.sleep(2)

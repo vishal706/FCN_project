@@ -53,10 +53,10 @@ def perfTest( lossy=True ):
     net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "101" -f "recv_10000.b" --fT "0.25" --priority "1"&')
     net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "102" -f "recv_10000.b" --fT "0.25" --priority "2"&')
     net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "103" -f "recv_10000.b" --fT "0.25" --priority "3"&')
-    net["h1"].cmd('python3 RUDP_testing_client.py -i "10.0.0.2" -p "100" -s "1000" \
-        -f "send_10000.b" -b 50000 --icw "1024" --mcw "50000" --fT "0.25"&')
+    net["h1"].cmd('python3 RUDP_testing_client.py -i "10.0.0.2" -p "100" -s "100" -f "send_10000.b" -b 50000 --icw "1024" --mcw "50000" --fT "0.25"&')
     # h1, h4 = net.getNodeByName('h1', 'h4')
     # net.iperf( ( h1, h4 ), l4Type='UDP' )
+    
     CLI( net)
     net.stop()
 
