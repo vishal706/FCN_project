@@ -11,7 +11,8 @@ class RUDP_client3():
     IF a packet is lost, the sliding windows restarts from the lost packet
     
     On Receiving a NACK, the server only focus to send the lost packet and moves the sliding 
-    window based on the respons from client'''
+    window based on the respons from client
+    Increase congestion window on ECN decrease on NACK'''
     def __init__(self, logger, srcIP, dstIP, srcPort, dstPort, segmentSize, initialWindowSize, maxWindowSize):
         self.logger = logger
         self.logger.info("Initialising :: " + self.__class__.__name__)

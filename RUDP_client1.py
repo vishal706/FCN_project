@@ -9,7 +9,9 @@ import time
 class RUDP_client1():
     '''Multiplicative Increase and Multiplicative decrease factor of 2.
     basically on NACK window increases but on ECN window decreases
-    IF a packet is lost, the sliding windows restarts from the lost packet'''
+    IF a packet is lost, the sliding windows restarts from the lost packet
+    
+    Decrease congestion window on ECN increas eon NACK'''
     def __init__(self, logger, srcIP, dstIP, srcPort, dstPort, segmentSize, initialWindowSize, maxWindowSize):
         self.logger = logger
         self.logger.info("Initialising :: " + self.__class__.__name__)

@@ -11,7 +11,9 @@ class RUDP_client2():
     IF a packet is lost, teh sliding windows restarts from the lost packet
     
     On Receiving a NACK, the server only focus to send the lost packet and moves the sliding 
-    window based on the respons from client'''
+    window based on the respons from client
+    
+    Not increasing congestion window at all'''
     def __init__(self, logger, srcIP, dstIP, srcPort, dstPort, segmentSize, initialWindowSize, maxWindowSize):
         self.logger = logger
         self.logger.info("Initialising :: " + self.__class__.__name__)
@@ -120,7 +122,7 @@ class RUDP_client2():
                 self.cw = max(self.initialWindowSize, int((self.cw)/2))
             else:
                 #Increase window since no congestion detected
-                # self.cw = min(self.maxWindowSize, int((self.cw)*2))
+                self.cw = min(self.maxWindowSize, int((self.cw)*2))
                 self.logger.info("NACK-" + str(resp[1]))
                 if resp[1] < self.packetIndex:
                     return self.sendPacket(resp[1])
