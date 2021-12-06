@@ -73,10 +73,18 @@ class RUDP_server3():
         while True:
             try:
                 data, self.addr = self.s.recvfrom(self.segmentSize + 100)
-                self.logger.info("Received packet:")
+
                 packet = pickle.loads(data)
-                self.logger.info("buffersize:" + str(len(self.buffer)) + "-Received:" + str(packet.sequenceNo) + "nextseqno:" + str(self.nextSequenceNo))
+                self.logger.info("buffersize:" + str(len(self.buffer)) + "-Received:" + str(packet.sequenceNo) \
+                    + ":nextseq=" + str(self.nextSequenceNo))
                 
+                if packet.sequenceNo == -1:
+                    # exit()
+                    self.buffer.clear()
+                    self.nextSequenceNo = 0
+                    print("yo begin + " + str(self.nextSequenceNo))
+                    continue
+            
                 if packet.sequenceNo >  self.nextSequenceNo:
                     if packet.sequenceNo not in self.buffer:
                         self.buffer[packet.sequenceNo] = packet.payload

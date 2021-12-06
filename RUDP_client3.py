@@ -35,17 +35,15 @@ class RUDP_client3():
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.settimeout(0.5) #setting timeout fro recv n socket
         
-        intialMessage = "Hi"
-        self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
-        time.sleep(2)
-        if self.waitACK(-1) == 1:
-            time.sleep(2)
-            self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
-            self.logger.info("Connection Established from server")
+        self.sequenceMapping[-1] = pickle.dumps(Packet(-1, "Hi"))
+        self.logger.info("Sending Hi")
+        for i in range (10):
+            self.s.sendto(self.sequenceMapping[-1], (self.dstIP, self.dstPort) )
+        time.sleep(1)
+        self.logger.info("Connection Established from server")
         return
                 
     def sendData(self, filelocation):
-        # self.logger.info("hello")
         self.f = open(filelocation, 'rb')
         data = self.f.read(self.segmentSize)
         while data:

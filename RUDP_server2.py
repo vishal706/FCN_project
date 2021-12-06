@@ -5,17 +5,6 @@ import pickle
 import threading
 
 
-
-# def waitHandshake(s):
-#     global SenderIP
-#     global SenderPort
-#     data, addr = s.recvfrom(options.segmentSize + 500)
-#     print(data)
-#     SenderIP = addr[0]
-#     SenderPort = addr[1]
-#     print("Connection Established from server" + SenderIP + ":" + str(SenderPort))
-#     sendresp(s, -1, "ACK:", SenderIP, SenderPort)
-
 class RUDP_server2():
     '''Server/ Receiver sends the NACK feedback reglarly a interval of feedbackTime'''
     def __init__(self, logger, port, segmentSize, bufferSize, feedbackTime):
@@ -74,10 +63,18 @@ class RUDP_server2():
         while True:
             try:
                 data, self.addr = self.s.recvfrom(self.segmentSize + 100)
-                self.logger.info("Received packet:")
+            
                 packet = pickle.loads(data)
-                self.logger.info("buffersize:" + str(len(self.buffer)) + "-Received:" + str(packet.sequenceNo) + "nextseqno:" + str(self.nextSequenceNo))
+                self.logger.info("buffersize:" + str(len(self.buffer)) + "-Received:" + str(packet.sequenceNo) \
+                    + ":nextseq=" + str(self.nextSequenceNo))
                 
+                if packet.sequenceNo == -1:
+                    # exit()
+                    self.buffer.clear()
+                    self.nextSequenceNo = 0
+                    print("yo begin + " + str(self.nextSequenceNo))
+                    continue
+                    
                 if packet.sequenceNo >  self.nextSequenceNo:
                     if packet.sequenceNo not in self.buffer:
                         self.buffer[packet.sequenceNo] = packet.payload

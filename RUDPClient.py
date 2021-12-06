@@ -31,7 +31,7 @@ log_location = "./log_files/client_" +  options.dstIP + "_" + str(options.port)\
 
 os.makedirs(os.path.dirname(log_location), exist_ok=True)
 logger = logging.getLogger()
-fhandler = logging.FileHandler(filename=log_location, mode='w')
+fhandler = logging.FileHandler(filename=log_location, mode='a')
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 fhandler.setFormatter(formatter)
 logger.addHandler(fhandler)
