@@ -49,11 +49,11 @@ def perfTest( lossy=True ):
     net.start()
     info( "Dumping host connections\n" )    
     # dumpNodeConnections(net.hosts)
-    info( "Testing bandwidth between h1 and h4\n" )
-    # net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "101" -f  "recv_10000.b" --fT "0.25" -s "100" --priority "1"&')
-    # net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "102" -f  "recv_10000.b" --fT "0.25" -s "100" --priority "2"&')
-    # net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "103" -f  "recv_10000.b" --fT "0.25" -s "100" --priority "3"&')
-    # net["h1"].cmd('python3 RUDP_testing_client.py -i "10.0.0.2" -p "100" -s "100" -b "5000" -f "send_10000.b" --icw "1024" --mcw "50000" --fT "0.25" &')
+    # net["h4"].cmd('python3 RUDPServer.py -i "10.0.0.4" -p "101" -s "1000" -b "50000" -f "recv_15.b" --fT "0.1" --priority "1"&')
+    # net["h4"].cmd('python3 RUDPServer.py -i "10.0.0.4" -p "102" -s "1000" -b "50000" -f "recv_15.b" --fT "0.1" --priority "2"&')
+    # net["h4"].cmd('python3 RUDPServer.py -i "10.0.0.4" -p "103" -s "1000" -b "50000" -f "recv_15.b" --fT "0.1" --priority "3"&')
+    
+    # net["h3"].cmd('python3 RUDP_testing_client.py -i "10.0.0.4"  -p "100" -s "1000" -b "50000" -f "send_15.b" --icw "1024" --mcw "50000" --fT "0.1"&')
     h1, h4 = net.getNodeByName('h1', 'h4')
     # net.iperf( ( h1, h4 ), l4Type='UDP' )
     
