@@ -6,7 +6,7 @@ from timeit import default_timer as timer
 
 parser = optparse.OptionParser()
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
-parser.add_option('-s', dest='segmentSize', type='int', default=1000)
+parser.add_option('-s', dest='segmentSize', type='int', default=10)
 parser.add_option('-p', dest='dstPort', type='int', default=12345)
 parser.add_option('-f', dest='dstFile', default="received_data")
 
@@ -24,11 +24,12 @@ s.bind((options.dstIP, int(options.dstPort)))            # Bind to the port
 s.listen(5)                     # Now wait for client connection.
 
 print('Server listening....')
+print(options)
 start = timer()
 while True:
    conn, addr = s.accept()     # Establish connection with client.
    print('Got connection from' +str(addr))
-   data = conn.recv(options.segmentSize)
+   data = conn.recv(100)
    print('Server received', repr(data))
    
    # f='send.txt'#'1.5MB.mp4'

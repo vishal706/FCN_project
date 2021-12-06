@@ -10,7 +10,7 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 #python3 TCPClient.py -i 10.0.0.2 -f "recv.mp4"
 parser = optparse.OptionParser()
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
-parser.add_option('-s', dest='segmentSize', type='int', default=1000)
+parser.add_option('-s', dest='segmentSize', type='int', default=10)
 parser.add_option('-p', dest='dstPort', type='int', default=12345)
 parser.add_option('-f', dest='srcFile', default="README.md")
 
@@ -25,8 +25,9 @@ s.send(b"Hello server!")
 
 with open(("TCP_" + options.srcFile), 'wb') as f:
     print('file opened')
+    print(options)
     while True:
-        print("Received")
+        # print("Received")
         data = s.recv(options.segmentSize)
         if not data:
             break
