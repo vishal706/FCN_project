@@ -12,9 +12,9 @@ from RUDP_server2 import RUDP_server2
 
 parser = optparse.OptionParser()
 
-# python3 RUDPServer.py -i "10.0.0.2" -p "101" -f "recv.txt" --fT "0.25" --priority "1"
-# python3 RUDP_testing_server.py -i "10.0.0.2"  -p "105" -b "5000" -f "send.txt" --icw "1024" --mcw "50000" --fT "0.25"
-parser.add_option('-RUDPServer', dest='dstIP', default='127.0.0.1')
+# python3 RUDPServer.py -i "10.0.0.2" -p "101" -f "recv_10000.b" --fT "0.25" --priority "1"
+# python3 RUDP_testing_server.py -i "10.0.0.2"  -p "105" -b "5000" -f "send_10000.b" --icw "1024" --mcw "50000" --fT "0.25"
+parser.add_option('-i', dest='dstIP', default='127.0.0.1')
 parser.add_option('-p', dest='port', type='int', default=12345)
 parser.add_option('-s', dest='segmentSize', type='int', default=100)
 parser.add_option('-b', dest='bufferSize', type='int', default=5000)

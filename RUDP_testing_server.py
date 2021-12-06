@@ -7,7 +7,7 @@ import os
 import matplotlib.pyplot as plt
 
 # python3 RUDP_testing_server.py -i "10.0.0.2"  -p "105" -b "5000" -f "send.txt" --icw "1024" --mcw "50000" --fT "0.25"
-
+# python3 RUDPServer.py -i "10.0.0.2" -p "101" -f "recv.txt" --fT "0.25" --priority "1"
 
 parser = optparse.OptionParser()
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')

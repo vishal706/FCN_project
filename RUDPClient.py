@@ -10,7 +10,7 @@ from RUDP_client_MIMD_RTT_calculation import RUDP_client_MIMD_RTT_calculation
 from RUDP_client3 import RUDP_client3
 from RUDP_client2 import RUDP_client2
 
-# python3 RUDPClient.py -i "10.0.0.2" -p "101" -f "send.txt" --fT "0.25" --priority "1"
+# python3 RUDPClient.py -i "10.0.0.2" -p "101" -f "send_10000.b" --fT "0.25" --priority "1"
 parser = optparse.OptionParser()
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
 parser.add_option('-p', dest='port', type='int', default=12345)

@@ -6,7 +6,7 @@ import os
 
 import matplotlib.pyplot as plt
 
-# python3 RUDP_testing_client.py -i "10.0.0.2"  -p "105" -s "1000" -f "send.txt" --icw "1024" --mcw "50000" --fT "0.25"
+# python3 RUDP_testing_client.py -i "10.0.0.2"  -p "100" -s "1000" -f "send_10000.b" --icw "1024" --mcw "50000" --fT "0.25"
 
 parser = optparse.OptionParser()
 parser.add_option('-i', dest='dstIP', default='127.0.0.1')
@@ -27,7 +27,7 @@ timer_2 = []
 timer_3 = []
 
 
-for i in range(1):
+for i in range(5):
     start = timer()
     ### command goes here.
     command = f'python3 RUDPClient.py -i "{options.dstIP}" -p "{options.port + 1}" -f "{options.srcFile}" \
@@ -38,7 +38,7 @@ for i in range(1):
     end = timer()
     timer_1.append(end - start)
 
-for i in range(1):
+for i in range(5):
     start = timer()
     ### command goes here.
     command = f'python3 RUDPClient.py -i "{options.dstIP}" -p "{options.port + 2}" -f "{options.srcFile}" \
@@ -50,7 +50,7 @@ for i in range(1):
     timer_2.append(end - start)
 
 
-for i in range(1):
+for i in range(5):
     start = timer()
     ### command goes here.
     command = f'python3 RUDPClient.py -i "{options.dstIP}" -p "{options.port + 3}" -f "{options.srcFile}" \
@@ -70,4 +70,5 @@ plt.legend(["1", "2", "3"])
 plt.title('Total time taken to transfer whole data')
 plt.xlabel('Iterations')
 plt.ylabel('Time')
+plt.savefig("fib.png")
 plt.show()

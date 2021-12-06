@@ -37,7 +37,7 @@ class RUDP_client2():
         
         intialMessage = "Hi"
         self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
-        time.sleep(2)
+        time.sleep(1)
         if self.waitACK(-1) == 1:
             time.sleep(2)
             self.s.sendto(intialMessage.encode(), (self.dstIP, self.dstPort) )
