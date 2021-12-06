@@ -84,9 +84,9 @@ textstr = '\n'.join((
 
 # plt.figtext(-0.05, 3.5, s=textstr, horizontalalignment = "center")
 plt.text(-0.05, 3.5, textstr)
-    
-file_name = "./client_" +  options.dstIP + "_" + str(options.port)\
+
+file_name = "/home/mininet/FCN_project/graphs/client_" +  options.dstIP + "_" + str(options.port)\
      + "_" + str(options.initialWindowSize) + "_" + str(options.feedbackTime) +\
-           "_" + str(options.maxWindowSize) + "_" + "__" + ".png"
+           "_" + str(options.maxWindowSize) + "_" + str(options.bufferSize) + "__" + ".png"
 plt.savefig(file_name)
 plt.show()
