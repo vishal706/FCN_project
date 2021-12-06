@@ -66,6 +66,10 @@ for i in range(5):
 # timer_1 = [7.602732038998511, 5.475548384994909, 6.192044618001091, 6.590054241001781, 5.9031156550045125]
 # timer_2 = [8.607846077000431, 10.09384544799832, 7.935086603996751, 7.25913836700056, 7.731159035000019]
 # timer_3 = [9.750261357999989, 9.7952436869964, 10.235173731998657, 10.239129595000122, 8.248223855000106]
+# timer_1 = [6.743216530994687, 5.977355709997937, 5.3149068060010904, 5.325412235004478, 5.741012362996116]
+# timer_2 = [7.36355656899832, 6.8418743680012994, 6.257764028996462, 4.644368727000256, 5.1715113739992375]
+# timer_3 = [5.542510102000961, 5.492816213001788, 5.498592156996892, 5.550686763999693, 5.4335575029981555]
+
 print(timer_1)
 print(timer_2)
 print(timer_3)
@@ -87,25 +91,9 @@ textstr = '\n'.join((
     f'bufferSize = {options.bufferSize}'))
 
 
-
-# props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-
-# plt.text(0.05, 0.95, textstr, fontsize=14,
-#         verticalalignment='top')
-
-# plt.figtext(-0.05, 3.5, s=textstr, horizontalalignment = "center")
 y=min(min(timer_1), min(timer_2), min(timer_3))
 plt.text(1, y, textstr)
 
-# timer_name = "/home/mininet/FCN_project/graphs/timer_logs_" +  options.dstIP + "_" + str(options.port)\
-#      + "_" + str(options.initialWindowSize) + "_" + str(options.feedbackTime) +\
-#            "_" + str(options.maxWindowSize) + "_" + sfile[0] + "_" + str(options.bufferSize) + "_" + ".png"
-
-# textfile = open(timer_name, "w")
-# textfile.write(timer_1)
-# textfile.write(timer_2)
-# textfile.write(timer_3)
-# textfile.close()
 
 
 file_name = "/home/mininet/FCN_project/graphs/client_" +  options.dstIP + "_" + str(options.port)\
