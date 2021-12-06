@@ -9,6 +9,7 @@ from RUDP_client_minimal import RUDP_client_minimal
 from RUDP_client_MIMD_RTT_calculation import RUDP_client_MIMD_RTT_calculation
 from RUDP_client3 import RUDP_client3
 from RUDP_client2 import RUDP_client2
+from RUDP_client4 import RUDP_client4
 
 # python3 RUDPClient.py -i "10.0.0.2" -p "101" -f "send_10000.b" --fT "0.25" --priority "1"
 parser = optparse.OptionParser()
@@ -53,7 +54,7 @@ elif options.priority == 3:
       Rudp = RUDP_client3(logger, '127.0.0.1', options.dstIP, options.port, options.port,\
            options.segmentSize, options.initialWindowSize, options.maxWindowSize)
 elif options.priority == 4:
-      Rudp = RUDP_client_minimal(logger, '127.0.0.1', options.dstIP, options.port,\
+      Rudp = RUDP_client4(logger, '127.0.0.1', options.dstIP, options.port,\
              options.port, options.segmentSize)
 else:
       print("please enter priority")
@@ -63,7 +64,8 @@ start = timer()
 Rudp.createConnection()
 logger.info("Connection established")
 file_name = "./send_files/" + options.srcFile
-Rudp.sendData(file_name)
+retransmission = Rudp.sendData(file_name)
+logger.info("Retransmission count = " + str(retransmission))
 end = timer()
 
 logger.info("Sending complete in time:: " + str(end - start))

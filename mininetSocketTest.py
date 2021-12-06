@@ -47,9 +47,14 @@ def perfTest( lossy=True ):
                    host=CPULimitedHost, link=TCLink,
                    autoStaticArp=True )
     net.start()
-    info( "Dumping host connections\n" )
+    info( "Dumping host connections\n" )    
     # dumpNodeConnections(net.hosts)
     info( "Testing bandwidth between h1 and h4\n" )
+    # net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "101" -f "recv_10000.b" --fT "0.25" --priority "1"')
+    # net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "102" -f "recv_10000.b" --fT "0.25" --priority "1"')
+    # net["h2"].cmd('python3 RUDPServer.py -i "10.0.0.2" -p "103" -f "recv_10000.b" --fT "0.25" --priority "1"')
+    # net["h1"].cmd('python3 RUDP_testing_client.py -i "10.0.0.2"  -p "100" -s "1000" \
+    #     -f "send_10000.b" --icw "1024" --mcw "50000" --fT "0.25"')
     # h1, h4 = net.getNodeByName('h1', 'h4')
     # net.iperf( ( h1, h4 ), l4Type='UDP' )
     CLI( net)

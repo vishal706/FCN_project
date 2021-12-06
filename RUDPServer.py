@@ -9,6 +9,7 @@ from RUDP_server_minimal import RUDP_server_minimal
 from RUDP_server_MIMD_RTT_calculation import RUDP_server_MIMD_RTT_calculation
 from RUDP_server3 import RUDP_server3
 from RUDP_server2 import RUDP_server2
+from RUDP_server4 import RUDP_server4
 
 parser = optparse.OptionParser()
 
@@ -58,6 +59,8 @@ elif options.priority == 2:
       Rudp = RUDP_server2(logger, options.port, options.segmentSize, options.bufferSize, options.feedbackTime)
 elif options.priority == 3:
       Rudp = RUDP_server3(logger, options.port, options.segmentSize, options.bufferSize, options.feedbackTime)
+elif options.priority == 4:
+      Rudp = RUDP_server4(logger, options.port, options.segmentSize, options.bufferSize, options.feedbackTime)
 else:
       print("please Enter priority")
       exit()
