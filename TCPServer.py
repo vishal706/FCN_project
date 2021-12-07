@@ -29,7 +29,7 @@ start = timer()
 while True:
    conn, addr = s.accept()     # Establish connection with client.
    print('Got connection from' +str(addr))
-   data = conn.recv(100)
+   data = conn.recvfrom(100)
    print('Server received', repr(data))
    
    # f='send.txt'#'1.5MB.mp4'
